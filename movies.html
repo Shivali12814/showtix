@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies | SHOWTIX</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="filter-pages.css" />
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+    <script src="script.js"></script>
+
+    
+<style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+    </style>
+</head>
+  <body>
+    <div class="menu">
+      <div class="book">
+        <a href="home.html">
+          <img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a>
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+      <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav"></div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="#">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <img src="smashing.avif" alt="The Smashing Machine" />
+        <div class="slide-content">
+          <span class="slide-badge">Now Showing</span>
+          <div class="slide-title">The Smashing Machine</div>
+          <div class="slide-meta">
+            <span class="slide-tag">A</span>
+            <span class="slide-tag">English</span>
+            <span class="slide-tag">Action</span>
+            <span class="slide-tag">Biography</span>
+          </div>
+          <div class="slide-btns">
+            <a href="smashing.html" class="slide-cta">🎟 Book Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="battle.avif" alt="One Battle After Another" />
+        <div class="slide-content">
+          <span class="slide-badge">Now Showing</span>
+          <div class="slide-title">One Battle After Another</div>
+          <div class="slide-meta">
+            <span class="slide-tag">UA16+</span>
+            <span class="slide-tag">Hindi</span>
+            <span class="slide-tag">Action</span>
+            <span class="slide-tag">War</span>
+          </div>
+          <div class="slide-btns">
+            <a href="battle.html" class="slide-cta">🎟 Book Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="narsimha.avif" alt="Mahaavtar Narsimha" />
+        <div class="slide-content">
+          <span class="slide-badge">Coming Soon</span>
+          <div class="slide-title">Mahaavtar Narsimha</div>
+          <div class="slide-meta">
+            <span class="slide-tag">UA</span>
+            <span class="slide-tag">Hindi / Telugu</span>
+            <span class="slide-tag">Mythological</span>
+            <span class="slide-tag">Action</span>
+          </div>
+          <div class="slide-btns">
+            <a href="narsimha.html" class="slide-cta">🎟 Book Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="caught.avif" alt="Caught Stealing" />
+        <div class="slide-content">
+          <span class="slide-badge">Now Showing</span>
+          <div class="slide-title">Caught Stealing</div>
+          <div class="slide-meta">
+            <span class="slide-tag">A</span>
+            <span class="slide-tag">English</span>
+            <span class="slide-tag">Crime</span>
+            <span class="slide-tag">Thriller</span>
+          </div>
+          <div class="slide-btns">
+            <a href="caught.html" class="slide-cta">🎟 Book Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="avtar.avif" alt="Avatar: Fire and Ash" />
+        <div class="slide-content">
+          <span class="slide-badge">Now Showing</span>
+          <div class="slide-title">Avatar: Fire and Ash</div>
+          <div class="slide-meta">
+            <span class="slide-tag">UA16+</span>
+            <span class="slide-tag">English / Hindi</span>
+            <span class="slide-tag">Sci-Fi</span>
+            <span class="slide-tag">Adventure</span>
+          </div>
+          <div class="slide-btns">
+            <a href="avtar.html" class="slide-cta">🎟 Book Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <div id="span1">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+      </div>
+    </div>
+    <div class="bg_movie">
+      <div class="movies_delhi">
+        <h2><br />Movies in Delhi</h2>
+      </div>
+
+      <div class="Movie_recomm">
+        <div class="coming_soon"><h2>Coming Soon</h2></div>
+        <div class="explore">
+          <a href="explore.html">Explore Up Coming Event ></a>
+        </div>
+      </div>
+
+      <div class="movies_list">
+        <div class="movie">
+          <a href="thama.html" target="_blank"
+            ><img src="thama.avif" alt="Tron: Ares poster" />
+            <summary>
+              <p>Thamma</p>
+            </summary>
+
+            <span>UA16+<br />Hindi,Telgu<br /></span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="Deewane.html" target="_blank"
+            ><img src="deewane.avif" alt="Deewane ki dewaniyat" />
+            <summary>
+              <p>Ek Deewane Ki Deewaniyat</p>
+            </summary>
+
+            <span>UA16+<br />Hindi<br /></span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="kantara.html" target="_blank"
+            ><img src="kantara.avif" alt="Kantara: A Legend — poster" />
+            <summary>
+              <p>kantara:A Legend Chapter<br />-1</p>
+            </summary>
+            <span>UA16+<br />Telgu,Kannad,Hindi</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="sunny.html" target="_blank"
+            ><img
+              src="sunny.avif"
+              alt="Sunny Sanskari Ki Tulsi Kumari poster"
+            />
+            <p>Sunny Sanskari Ki Tulsi<br />Kumari</p>
+            <span>UA13+<br />Hindi</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="jolly.html" target="_blank"
+            ><img src="jolly.avif" alt="Jolly LLB 3 poster" />
+            <p>Jolly LLB 3</p>
+            <span>UA13+<br />Hindi</span>
+          </a>
+        </div>
+      </div>
+      <div class="movies_list">
+        <div class="movie">
+          <a href="homebound.html" target="_blank"
+            ><img src="hombound.avif" alt="Homebound poster" />
+            <p>Homebound</p>
+            <span>Drama</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="regret.html" target="_blank"
+            ><img src="regret.avif" alt="regret" />
+            <p>Regratting you</p>
+            <span>UA13+<br />English</span>
+          </a>
+        </div>
+
+        <div class="movie">
+          <a href="dude.html" target="_blank"
+            ><img src="dude.avif" alt="Kantara: A Legend — poster" />
+            <summary>
+              <p>Dude<br />-1</p>
+            </summary>
+            <span>UA16+<br />Telgu,Kannad,Hindi</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="bison.html" target="_blank"
+            ><img
+              src="bison.avif"
+              alt="Sunny Sanskari Ki Tulsi Kumari poster"
+            />
+            <p>Bishon</p>
+            <span>UA13+<br />Hindi,telugu</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="goddy.html" target="_blank"
+            ><img src="goddy.avif" alt="goddy poster" />
+            <p>Goddy goddy Cha 2</p>
+            <span>UA13+<br />Hindi</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="movies_list">
+        <div class="movie">
+          <a href="caught.html" target="_blank"
+            ><img src="caught.avif" alt="Caught Stealing poster" />
+            <summary>
+              <p>Caught Stealing</p>
+            </summary>
+            <span>Comedy/Crime/Thriller</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="avtar.html" target="_blank"
+            ><img src="avtar.avif" alt="Avatar" />
+            <p>Avtar</p>
+            <span>UA18+<br />Hindi,Telgu,english</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="battle.html" target="_blank"
+            ><img src="battle.avif" alt="One Battle After Another poster" />
+            <p>
+              One Battle After<br />
+              Another
+            </p>
+            <span>UA16+<br />Hindi</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="smashing.html" target="_blank"
+            ><img src="smashing.avif" alt="The Smashing Machine poster" />
+            <p>The Smashing <br />Machine</p>
+            <span>Action/Biography/Drama</span>
+          </a>
+        </div>
+        <div class="movie">
+          <a href="narsimha.html" target="_blank"
+            ><img src="narsimha.avif" alt="The Smashing Machine poster" />
+            <p>Mahaavtar Narsimha</p>
+            <span
+              >UA13+<br />
+              Hindi,Telgu,Tamil,Kannada</span
+            >
+          </a>
+        </div>
+      </div>
+      <div class="movies_list">
+        <div class="movie">
+          <a href="chan.html" target="_blank"
+            ><img
+              src="chan.avif"
+              alt="Shin chan: The Spicy Kasukabe Dancers in India poster"
+            />
+            <summary>
+              <p>Shin chan:The Spicy<br />Kasukabe Dancers <br />in India</p>
+            </summary>
+
+            <span>Anime/Comedy/Drama</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="home_movies">
+      <p><a href="home.html">Home -> Movies</a></p>
+    </div>
+    <div class="enjoy">
+      <h4>Enjoy Online Ticket Booking For Movies in Delhi With SHOWTIX</h4>
+      <div class="faq-body"><p>
+        If you are planing for movie Ticket booking for the latest movies in
+        mumbai ,dont look any further.Now it is easu to get your movie tickets
+        online with SHOWTIX. SHOWTIX is India's largest online
+        entertainment ticketing platform where you can book tickets for movies,
+        plays, sports, events and activities in your city. With SHOWTIX, you
+        can book movie tickets for the latest Bollywood movies, Hollywood
+        movies, regional movies and more. You can also choose from a variety of
+        showtimes and seating options to suit your preferences. So why wait?
+        Book your movie tickets online with SHOWTIX today and enjoy a
+        hassle-free movie experience!
+      </p>
+      <h4>Latest Movies to Watch in delhi with Family and Friends</h4>
+      <p>
+        Each year the cinema world is enlightened with the latest movie trailers
+        ,increasing among everyone.This year just like previous year ,you have
+        been waitingfor some of the biggest Bollywood movies to be released with
+        the biggest star cast.Enjoy your favourite movie ,not just with your
+        friends bit in cinema hall mumbai that will be fled with
+        like-mindedpeople .Be a part of everyone reaction
+      </p>
+      <h4>Upcoming Bollywood & Hollywood Movies You Can't Miss</h4>
+
+      <p>
+        From thrilling adventures to romantic tales, the movie world never stops
+        giving surprises. Stay tuned for big releases like Thangalaan and Kalki
+        2898 AD that are already creating buzz!
+      </p>
+      <h4>Exciting Tollywood & Kollywood Movies to Book Tickets For</h4>
+      <p>
+        Fans of regional cinema can look forward to engaging Telugu and Tamil
+        films. Explore gripping stories, powerful performances, and visual
+        masterpieces releasing every week
+      </p>
+      <h4>The Joy of Movie Tickets Booking with Just a Few Clicks</h4>
+      <p>
+        Skip the queues and book your movie tickets easily online. Choose your
+        showtime, seat, and theatre—all from the comfort of your home.
+        <br />
+      </p>
+      <h3>FAQs</h3>
+      <h4>Q. How can I book movie tickets online in Delhi?</h4>
+      <p>
+        A. You can book movie tickets online in Delhi through SHOWTIX's
+        website or mobile app. Simply select your preferred movie, showtime, and
+        seating options to complete your booking.
+      </p>
+      <h4>
+        Q. Are there any discounts available for online movie ticket bookings?
+      </h4>
+      <p>
+        A. Yes, SHOWTIX often offers discounts and promotional deals for
+        online movie ticket bookings. Keep an eye out for special offers on the
+        website or app.
+      </p>
+      <h4>Q. Can I choose my seats while booking movie tickets online?</h4>
+      <p>
+        A. Yes, SHOWTIX allows you to select your preferred seats while
+        booking movie tickets online. You can view the seating layout of the
+        theatre and choose the seats that suit you best.
+      </p>
+      <h4>Q. 1. How to Know if a Movie is Suitable for Children?</h4>
+      <p>
+        Yes, Check for ratings like U/A, U, or A on the movie page before
+        booking
+      </p>
+      <h4>Can i watch Regional or International Movies?</h4>
+      <p>
+        Yes, SHOWTIX offers a wide range of
+        <strong>regional and international movies</strong> ,use the language
+        filter to find your preferred film .
+      </p></div>
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+        <a href="contact.html">
+          <button class="contact-btn">Contact today!</button></a
+        >
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Wari Loidri</a> |
+            <a href="movies.html">Chaniya Toli</a> |
+            <a href="movies.html">Sharthopor</a> |
+            <a href="movies.html">Premachi Goshta 2</a> |
+            <a href="movies.html">Lipun</a> |
+            <a href="movies.html">Yotki Thamoi</a> |
+            <a href="movies.html">Green</a> | <a href="movies.html">Aridra</a> |
+            <a href="movies.html">Erra Cheera</a> |
+            <a href="movies.html">Sunita</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Drama Movies</a> |
+            <a href="event.html">Comedy Movies</a> |
+            <a href="movies.html">Action Movies</a> |
+            <a href="movies.html">Romantic Movies</a> |
+            <a href="movies.html">Adventure Movies</a> |
+            <a href="movies.html">Thriller Movies</a> |
+            <a href="movies.html">Crime Movies</a> |
+            <a href="movies.html">Family Movies</a> |
+            <a href="movies.html">Fantasy Movies</a> |
+            <a href="movies.html">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Movies in Hindi</a> |
+            <a href="movies.html">Movies in English</a> |
+            <a href="movies.html">Movies in Telugu</a> |
+            <a href="#">Movies in Tamil</a> |
+            <a href="movies.html">Movies in Malayalam</a> |
+            <a href="movies.html">Movies in Punjabi</a> |
+            <a href="movies.html">Movies in Japanese</a> |
+            <a href="movies.html">Movies in Portuguese</a> |
+            <a href="movies.html">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section"></div>
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="event.html">Events in Mumbai</a> |
+            <a href="event.html">Events in Delhi-NCR</a> |
+            <a href="event.html">Events in Chennai</a> |
+            <a href="event.html">Events in Bengaluru</a> |
+            <a href="event.html">Events in Hyderabad</a> |
+            <a href="event.html">Events in Pune</a> |
+            <a href="event.html">Events in Ahmedabad</a> |
+            <a href="event.html">Events in Kolkata</a> |
+            <a href="event.html">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="plays.html">Plays in Mumbai</a> |
+            <a href="plays.html">Plays in Delhi-NCR</a> |
+            <a href="plays.html">Plays in Chennai</a> |
+            <a href="plays.html">Plays in Bengaluru</a> |
+            <a href="plays.html">Plays in Hyderabad</a> |
+            <a href="#">Plays in Pune</a> |
+            <a href="plays.html">Plays in Ahmedabad</a> |
+            <a href="plays.html">Plays in Kolkata</a> |
+            <a href="plays.html">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="activity.html">Activities in Mumbai</a> |
+            <a href="activity.html">Activities in Delhi-NCR</a> |
+            <a href="activity.html">Activities in Chennai</a> |
+            <a href="activity.html">Activities in Bengaluru</a> |
+            <a href="activity.html">Activities in Pune</a> |
+            <a href="activity.html">Activities in Ahmedabad</a> |
+            <a href="activity.html">Activities in Kolkata</a> |
+            <a href="activity.html">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

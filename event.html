@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | SHOWTIX</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="filter-pages.css" />
+    
+    
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+<style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+    </style>
+</head>
+  <body>
+    <div class="menu">
+      <div class="book">
+        <img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" />
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+   <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a
+        >
+        <a href="#">Hey!</a>
+        <a href="#">Unlock Special Offers & <br />great benefit</a>
+        <a href="#">&#128365; Notification</a>
+        <a href="#">📺 Stream Library</a>
+        <a href="#"> &#128179; Play Credit Card</a>
+        <a href="#"> &#9993; Help & Support </a>
+        <a href="#">&#x1F381; Rewards</a>
+        <a href="#">&#x2606; BookAChange</a>
+      </div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="movies.html">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+      <div class="show1"><a href="#">Gift Cards</a></div>
+    </div>
+    <div class="container">
+      <div class="filters">
+        <h3>Filters</h3>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Language</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Hindi</span>
+            <span>English</span>
+            <span>Telugu</span>
+            <span>Tammil</span>
+            <span>kannad</span>
+            <span>Punjabi</span>
+            <span>English</span>
+            <span>Hinglish</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Categories</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Action</span>
+            <span>Comedy</span>
+            <span>Drama</span>
+            <span>Horror</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Release Month</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Oct</span>
+            <span>Nov</span>
+            <span>Dec</span>
+            <span>Jan</span>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Price</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Free</span>
+            <span>0-500</span>
+            <span>501-2000</span>
+            <span>2000 Above</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right Movie List -->
+      <div class="movies-section">
+        <h2>Event In Delhi</h2>
+        <div class="languages">
+          <span>Comedy show</span><span>Workshop</span><span>M Shows</span
+          ><span>Kids</span> <span>Performance</span><span>Meetups</span
+          ><span>Exhibition</span><span>Screening</span><span>Sprituality</span
+          ><span>Talks</span><span>conference</span>
+        </div>
+
+        <h2></h2>
+        <div class="movie-list">
+          <div class="movie-card" data-tags="comedy show,hindi,501-2000">
+            <img src="./stream/event1.avif" alt="Avatar" />
+            <div class="movie-info">
+              <h4>Samay Raina - Still Alive<br />& Unfiltered-Delhi</h4>
+              <div class="faq-body"><p>Stand-up Comedy<br />₹999 Onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="comedy show,hindi,0-500">
+            <img src="./stream/event2.avif" alt="Baahubali" />
+            <div class="movie-info">
+              <h4>Rambo Circus-Delhi</h4>
+              <div class="faq-body"><p>
+                Talkatora Stadium:Delhi<br />Circus<br />
+                ₹500 Onwards
+              </p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="comedy show,hindi,501-2000">
+            <img src="./stream/event3.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Papa Yaar by <br />Zakir Khan-Delhi<br />Stand up Comedy</h4>
+              <div class="faq-body"><p>₹1299 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="comedy show,hindi,0-500">
+            <img src="./stream/event4.avif" alt="The Raja Saab" />
+            <div class="movie-info">
+              <h4>Kisi Ko Batana mat By <br />Anubhav Singh Bassi</h4>
+              <div class="faq-body"><p>Talkotra Stadium :Delhi<br />Stand-up Comedy</p>
+              <p class="likes">₹799 onwards</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="movie-list">
+          <div class="movie-card" data-tags="concert,hindi,0-500">
+            <img src="./stream/event5.avif" alt="Avatar" />
+            <div class="movie-info">
+              <h4>Sound Check with Zakir<br />And Friends-Delhi</h4>
+              <div class="faq-body"><p>Indira gandhi indoor...</p>
+              <p class="likes">₹799 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="workshop,hindi,501-2000">
+            <img src="./stream/event6.avif" alt="Baahubali" />
+            <div class="movie-info">
+              <h4>HorrorCon 2025-India Biggest Halloween Party</h4>
+              <div class="faq-body"><p>NSIC Exhibition Grounds</p>
+              <p class="likes">₹1299 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="comedy show,hindi,0-500">
+            <img src="./stream/event7.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Madhur Model</h4>
+              <div class="faq-body"><p>Stand up comedy</p>
+              <p class="likes">₹999 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="concert,hindi,501-2000">
+            <img src="./stream/event8.avif" alt="The Raja Saab" />
+            <div class="movie-info">
+              <h4>Re:Sound with Lucky Ali-<br />Delhi</h4>
+              <div class="faq-body"><p>Concert</p>
+              <p class="likes">₹1200 onwards</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="movie-list">
+          <div class="movie-card" data-tags="comedy show,hindi,0-500">
+            <img src="./stream/prashasti.avif" alt="peddi" />
+            <div class="movie-info">
+              <h4>Prashasti Singh Live</h4>
+              <div class="faq-body"><p>The Laugh store:DLF...</p>
+              <p class="likes">₹600 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="comedy show,hindi,0-500">
+            <img src="./stream/gaura.avif" alt="jana" />
+            <div class="movie-info">
+              <h4>Gaurav Gupta Live!!</h4>
+              <div class="faq-body"><p>Stand-up comedy</p>
+              <p class="likes">₹999 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="concert,hindi,0-500">
+            <img src="./stream/bismil.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Bismil ki Mehfil-Delhi</h4>
+              <div class="faq-body"><p>Concert</p>
+              <p class="likes">₹999 onwards</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card" data-tags="performance,hindi,0-500">
+            <img src="./stream/nayaaland.avif" alt="NTR" />
+            <div class="movie-info">
+              <h4>Nykaal India's<br />Biggest Beauty Festival</h4>
+              <div class="faq-body"><p>Concert</p>
+              <p class="likes">₹999 onwards</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+       <a href="contact.html"> <button class="contact-btn">Contact today!</button></a>
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="#">Wari Loidri</a> | <a href="#">Chaniya Toli</a> |
+            <a href="#">Sharthopor</a> | <a href="#">Premachi Goshta 2</a> |
+            <a href="#">Lipun</a> | <a href="#">Yotki Thamoi</a> |
+            <a href="#">Green</a> | <a href="#">Aridra</a> |
+            <a href="#">Erra Cheera</a> |
+            <a href="#">Sunita</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="#">Drama Movies</a> | <a href="#">Comedy Movies</a> |
+            <a href="#">Action Movies</a> | <a href="#">Romantic Movies</a> |
+            <a href="#">Adventure Movies</a> | <a href="#">Thriller Movies</a> |
+            <a href="#">Crime Movies</a> | <a href="#">Family Movies</a> |
+            <a href="#">Fantasy Movies</a> |
+            <a href="#">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="#">Movies in Hindi</a> |
+            <a href="#">Movies in English</a> |
+            <a href="#">Movies in Telugu</a> | <a href="#">Movies in Tamil</a> |
+            <a href="#">Movies in Malayalam</a> |
+            <a href="#">Movies in Punjabi</a> |
+            <a href="#">Movies in Japanese</a> |
+            <a href="#">Movies in Portuguese</a> |
+            <a href="#">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>SPORTS EVENTS IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="#">Running</a> | <a href="#">Chess</a> |
+            <a href="#">Cricket</a> | <a href="#">Cycling</a> |
+            <a href="#">Kabaddi</a> | <a href="#">Baseball</a> |
+            <a href="#">Horse Race</a> | <a href="#">Boat Race</a> |
+            <a href="#">Archery</a> |
+            <a href="#">Bowling</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Events in Mumbai</a> |
+            <a href="#">Events in Delhi-NCR</a> |
+            <a href="#">Events in Chennai</a> |
+            <a href="#">Events in Bengaluru</a> |
+            <a href="#">Events in Hyderabad</a> |
+            <a href="#">Events in Pune</a> |
+            <a href="#">Events in Ahmedabad</a> |
+            <a href="#">Events in Kolkata</a> |
+            <a href="#">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+            <a href="#">Cinemas in Bengaluru</a> |
+            <a href="#">Cinemas in Hyderabad</a> |
+            <a href="#">Cinemas in Pune</a> |
+            <a href="#">Cinemas in Ahmedabad</a> |
+            <a href="#">Cinemas in Kolkata</a> |
+            <a href="#">Cinemas in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Plays in Mumbai</a> |
+            <a href="#">Plays in Delhi-NCR</a> |
+            <a href="#">Plays in Chennai</a> |
+            <a href="#">Plays in Bengaluru</a> |
+            <a href="#">Plays in Hyderabad</a> | <a href="#">Plays in Pune</a> |
+            <a href="#">Plays in Ahmedabad</a> |
+            <a href="#">Plays in Kolkata</a> |
+            <a href="#">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Activities in Mumbai</a> |
+            <a href="#">Activities in Delhi-NCR</a> |
+            <a href="#">Activities in Chennai</a> |
+            <a href="#">Activities in Bengaluru</a> |
+            <a href="#">Activities in Pune</a> |
+            <a href="#">Activities in Ahmedabad</a> |
+            <a href="#">Activities in Kolkata</a> |
+            <a href="#">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

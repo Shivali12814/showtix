@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift Card</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+      body {
+        background-color: #0d0d0d;
+        color: #fff;
+      }
+      .gift-header {
+        text-align: center;
+        padding: 40px 5% 16px;
+      }
+      .gift-header h1 {
+        font-family: 'Bebas Neue', 'Impact', sans-serif;
+        font-size: 42px;
+        letter-spacing: 3px;
+        color: #fff;
+        margin: 0 0 8px;
+      }
+      .gift-header h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #888;
+        margin: 0 0 32px;
+      }
+      .card-container {
+        padding: 0 5% 60px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        height: auto;
+      }
+
+      .card {
+        background: linear-gradient(145deg, #1c1c1c, #141414);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(229,9,20,0.18);
+        border-color: rgba(229,9,20,0.3);
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .card img { height: 140px; }
+        .card-container { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+      }
+
+      @media (max-width: 480px) {
+        .card img { height: 120px; }
+        .card-container { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 3% 40px; }
+        .gift-header h1 { font-size: 28px; }
+      }
+      .footer {
+        width: 100%;
+      }
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+</head>
+  <body>
+    <div class="menu">
+      <div class="book">
+        <a href="home.html">
+          <img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a>
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+  <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      
+       <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a
+        >
+        <a href="#">Hey!</a>
+        <a href="#">Unlock Special Offers & <br />great benefit</a>
+        <a href="#">&#128365; Notification</a>
+        <a href="#">📺 Stream Library</a>
+        <a href="#"> &#128179; Play Credit Card</a>
+        <a href="#"> &#9993; Help & Support </a>
+        <a href="#">&#x1F381; Rewards</a>
+        <a href="#">&#x2606; BookAChange</a>
+      </div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="movies.html">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+   
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+    <div class="gift-header">
+      <h1>E-Gift Cards</h1>
+      <h2>Pick a card from one of our Themes</h2>
+    </div>
+    <div class="card-container">
+      <div class="card">
+        <img src="./stream/gift1.avif" alt="Happy Birthday" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift2.avif" alt="I Love You" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift3.avif" alt="Best Partner" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift4.avif" alt="Best Bestie" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift5.avif" alt="Happy Anniversary" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift6.avif" alt="Forever My Fun" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift7.avif" alt="Belated Birthday" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift8.avif" alt="Happy Place" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift9.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift10.avif" alt="Besties Forever" />
+      </div>
+      <div class="card">
+        <img src="./stream/gift11.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift12.avif" alt="Besties Forever" />
+      </div>
+      <div class="card">
+        <img src="./stream/gift13.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift14.avif" alt="Besties Forever" />
+      </div>
+      <div class="card">
+        <img src="./stream/gift15.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift16.avif" alt="Besties Forever" />
+      </div>
+      <div class="card">
+        <img src="./stream/gift17.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift18.avif" alt="Besties Forever" />
+      </div>
+      <div class="card">
+        <img src="./stream/gift19.avif" alt="Support System" />
+      </div>
+
+      <div class="card">
+        <img src="./stream/gift20.avif" alt="Besties Forever" />
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+        <a href="contact.html"> <button class="contact-btn">Contact today!</button></a>
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Wari Loidri</a> |
+            <a href="movies.html">Chaniya Toli</a> |
+            <a href="movies.html">Sharthopor</a> |
+            <a href="movies.html">Premachi Goshta 2</a> |
+            <a href="movies.html">Lipun</a> |
+            <a href="movies.html">Yotki Thamoi</a> |
+            <a href="movies.html">Green</a> | <a href="movies.html">Aridra</a> |
+            <a href="movies.html">Erra Cheera</a> |
+            <a href="movies.html">Sunita</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Drama Movies</a> |
+            <a href="event.html">Comedy Movies</a> |
+            <a href="movies.html">Action Movies</a> |
+            <a href="movies.html">Romantic Movies</a> |
+            <a href="movies.html">Adventure Movies</a> |
+            <a href="movies.html">Thriller Movies</a> |
+            <a href="movies.html">Crime Movies</a> |
+            <a href="movies.html">Family Movies</a> |
+            <a href="movies.html">Fantasy Movies</a> |
+            <a href="movies.html">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Movies in Hindi</a> |
+            <a href="movies.html">Movies in English</a> |
+            <a href="movies.html">Movies in Telugu</a> |
+            <a href="#">Movies in Tamil</a> |
+            <a href="movies.html">Movies in Malayalam</a> |
+            <a href="movies.html">Movies in Punjabi</a> |
+            <a href="movies.html">Movies in Japanese</a> |
+            <a href="movies.html">Movies in Portuguese</a> |
+            <a href="movies.html">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section"></div>
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="event.html">Events in Mumbai</a> |
+            <a href="event.html">Events in Delhi-NCR</a> |
+            <a href="event.html">Events in Chennai</a> |
+            <a href="event.html">Events in Bengaluru</a> |
+            <a href="event.html">Events in Hyderabad</a> |
+            <a href="event.html">Events in Pune</a> |
+            <a href="event.html">Events in Ahmedabad</a> |
+            <a href="event.html">Events in Kolkata</a> |
+            <a href="event.html">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="plays.html">Plays in Mumbai</a> |
+            <a href="plays.html">Plays in Delhi-NCR</a> |
+            <a href="plays.html">Plays in Chennai</a> |
+            <a href="plays.html">Plays in Bengaluru</a> |
+            <a href="plays.html">Plays in Hyderabad</a> |
+            <a href="#">Plays in Pune</a> |
+            <a href="plays.html">Plays in Ahmedabad</a> |
+            <a href="plays.html">Plays in Kolkata</a> |
+            <a href="plays.html">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="activity.html">Activities in Mumbai</a> |
+            <a href="activity.html">Activities in Delhi-NCR</a> |
+            <a href="activity.html">Activities in Chennai</a> |
+            <a href="activity.html">Activities in Bengaluru</a> |
+            <a href="activity.html">Activities in Pune</a> |
+            <a href="activity.html">Activities in Ahmedabad</a> |
+            <a href="activity.html">Activities in Kolkata</a> |
+            <a href="activity.html">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

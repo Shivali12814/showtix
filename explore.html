@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>explore</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+      body {
+        background-color: #fafafa;
+        color: #333;
+      }
+
+      .container {
+        display: flex;
+        padding: 5% 5% 0 5%;
+        gap: 20px;
+      }
+
+     
+      .filters {
+        width: 25%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+      }
+
+      .filters h3 {
+        margin-bottom: 15px;
+        font-size: 19px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+      }
+
+      .filter-group {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 10px;
+      }
+
+      .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .filter-header h4 {
+        font-size: 15px;
+        color: #555;
+      }
+
+      .arrow {
+        font-size: 16px;
+        transition: transform 0.3s ease;
+      }
+
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+        overflow: hidden;
+        max-height: 200px;
+        transition: max-height 0.3s ease;
+      }
+
+      .filter-options span {
+        background: #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-options span:hover {
+        background: #333;
+        color: #fff;
+      }
+
+      .collapsed .filter-options {
+        max-height: 0;
+        margin: 0;
+      }
+
+      .collapsed .arrow {
+        transform: rotate(-90deg);
+      }
+
+      /* Movie Section */
+      .movies-section {
+        flex: 1;
+        margin: 1% 5% 0%1%;
+      }
+
+      .movies-section h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+        font-family: none;
+      }
+
+      .languages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .languages span {
+        background: #eee;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .languages span:hover {
+        background: #333;
+        color: #fff;
+      }
+
+      .movie-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .movie-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .movie-card:hover {
+        transform: scale(1.03);
+      }
+
+      .movie-card img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .movie-info {
+        padding: 15px 20px;
+      }
+
+      .movie-info h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .movie-info p {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 5px;
+      }
+
+      .likes {
+        font-size: 13px;
+        color: #444;
+      }
+   #homee{
+      max-width: 100%;
+      height: 40px;
+      line-height: 40px;
+      background-color: white;  
+      font-weight:100;
+      font-size: 2px;  
+      margin-top:
+      2% ;   
+       padding-left: 15%;
+        color: #d4cfcfdf;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .container {
+          flex-direction: column;
+        }
+        .filters {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .movie-card img {
+          height: 220px;
+        }
+        .movie-info h4 {
+          font-size: 14px;
+        }
+        .languages span {
+          font-size: 12px;
+          padding: 5px 10px;
+        }
+      }
+      
+   
+      
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+
+    <style>
+      /* SHOWTIX Dark Theme — Filter Pages */
+      body { background:#0d0d0d !important; color:#fff !important; }
+      .container { padding: 20px 4%; gap:20px; }
+      .filters {
+        background:#1c1c1c !important;
+        border:1px solid rgba(255,255,255,0.07) !important;
+        border-radius:12px !important;
+        box-shadow:0 4px 24px rgba(0,0,0,0.4) !important;
+        color:#fff !important;
+      }
+      .filters h3 { color:#fff !important; border-bottom-color:rgba(255,255,255,0.1) !important; font-family:'Bebas Neue',Impact,sans-serif; letter-spacing:1px; font-size:22px !important; }
+      .filter-header h4 { color:#ccc !important; font-family:'Poppins',sans-serif; font-size:14px !important; font-weight:600; }
+      .filter-header h4:hover { color:#e50914 !important; }
+      .filter-group { border-bottom-color:rgba(255,255,255,0.06) !important; }
+      .filter-options span {
+        background:transparent !important;
+        border:1px solid rgba(255,255,255,0.15) !important;
+        color:#ccc !important;
+        font-size:13px !important;
+        border-radius:20px;
+        padding:5px 12px;
+        cursor:pointer;
+        transition:all 0.2s;
+      }
+      .filter-options span:hover { border-color:#e50914 !important; color:#e50914 !important; }
+      .movies-section h2 { color:#fff !important; font-family:'Bebas Neue',Impact,sans-serif; letter-spacing:1.5px; font-size:26px !important; }
+      .languages span {
+        border-color:rgba(255,255,255,0.2) !important;
+        color:#ccc !important;
+        font-size:13px !important;
+      }
+      .languages span:hover { border-color:#e50914 !important; color:#e50914 !important; }
+      .movie-card {
+        background:#1c1c1c !important;
+        border:1px solid rgba(255,255,255,0.06) !important;
+        box-shadow:0 4px 16px rgba(0,0,0,0.4) !important;
+        border-radius:10px !important;
+      }
+      .movie-card h4 { color:#fff !important; font-family:'Poppins',sans-serif; font-size:14px !important; }
+      .movie-card p, .movie-card span { color:#aaa !important; font-size:12px !important; }
+      .movie-card .book-btn, .movie-card button, .book-btn {
+        background:#e50914 !important; color:#fff !important;
+        border:none; border-radius:6px; padding:8px 16px;
+        font-family:'Poppins',sans-serif; font-weight:600;
+        cursor:pointer; transition:all 0.2s;
+        font-size:13px !important;
+      }
+      .movie-card .book-btn:hover, .book-btn:hover { background:#b0060f !important; }
+      h1,h2,h3,h4 { color:#fff !important; }
+      p { color:#aaa !important; }
+    </style>
+</head>
+  <body>
+    <div class="menu">
+      <div class="book">
+        <img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" />
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+    <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+       <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a
+        >
+        <a href="#">Hey!</a>
+        <a href="#">Unlock Special Offers & <br />great benefit</a>
+        <a href="#">&#128365; Notification</a>
+        <a href="#">📺 Stream Library</a>
+        <a href="#"> &#128179; Play Credit Card</a>
+        <a href="#"> &#9993; Help & Support </a>
+        <a href="#">&#x1F381; Rewards</a>
+        <a href="#">&#x2606; BookAChange</a>
+      </div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="movies.html">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+     
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+     
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+
+    <div class="container">
+    
+      <div class="filters">
+        <h3>Filters</h3>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Language</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Hindi</span>
+            <span><a href="#Telugu">Telugu</a></span>
+            <span>Tamil</span>
+            <span>English</span>
+            <span>Malayalam</span>
+            <span>Bengali</span>
+            <span>Punjabi</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Genre</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Action</span>
+            <span>Comedy</span>
+            <span>Drama</span>
+            <span>Horror</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-header">
+            <h4>Release Month</h4>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="filter-options">
+            <span>Oct</span>
+            <span>Nov</span>
+            <span>Dec</span>
+            <span>Jan</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="movies-section">
+        <h2>Upcoming Movies in Delhi</h2>
+        <div class="languages">
+          <span>Hindi</span><span>Telugu</span><span>Tamil</span
+          ><span>Malayalam</span> <span>English</span><span>Bengali</span
+          ><span>Punjabi</span>
+        </div>
+
+        <h2>Now Showing</h2>
+        <div class="movie-list">
+          <div class="movie-card">
+           <a href="avtar.html"> <img src="avtar.avif" alt="Avatar" /></a>
+            <div class="movie-info">
+              <h4>Avatar: Fire and Ash</h4>
+              <div class="faq-body"><p>19 Dec 2025 | Action/Adventure/Fantasy</p>
+              <p class="likes">1.1M likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="bahubali.avif" alt="Baahubali" />
+            <div class="movie-info">
+              <h4>Baahubali: The Epic</h4>
+              <div class="faq-body"><p>31 Oct 2025 | Action/Drama/Fantasy</p>
+              <p class="likes">288.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="toxic.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Toxic: A Fairy Tale</h4>
+              <div class="faq-body"><p>19 Mar 2026 | Action/Thriller</p>
+              <p class="likes">230.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="raja.avif" alt="The Raja Saab" />
+            <div class="movie-info">
+              <h4>The Raja Saab</h4>
+              <div class="faq-body"><p>09 Jan 2026 | Comedy/Horror/Romantic</p>
+              <p class="likes">196.0K likes</p></div>
+            </div>
+          </div>
+          
+        </div> 
+        <div class="movie-list">
+          <div class="movie-card">
+            <img src="brat.avif" alt="Avatar" />
+            <div class="movie-info">
+              <h4>Brat</h4>
+              <div class="faq-body"><p> Action/Adventure/Thriller</p>
+              <p class="likes">52.9k likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="mass.avif" alt="Baahubali" />
+            <div class="movie-info">
+              <h4>Mass jathara</h4>
+              <div class="faq-body"><p> Action/Drama/Fantasy</p>
+              <p class="likes">35.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="night.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Nellikkampoyil night<br>Riders</h4>
+              <div class="faq-body"><p>Mystry/ Action/Thriller</p>
+              <p class="likes">21.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="mastii.avif" alt="The Raja Saab" />
+            <div class="movie-info">
+              <h4>Mastii</h4>
+              <div class="faq-body"><p>Comedy/Adult<a name="Telugu"></a></p>
+              <p class="likes">41.0K likes</p></div>
+            </div>
+          </div>
+      </div> 
+      <div class="movie-list">
+          <div class="movie-card">
+            <img src="peddi.avif" alt="peddi" />
+            <div class="movie-info">
+              <h4>Peddi</h4>
+              <div class="faq-body"><p>Action/Adventure/Fantasy</p>
+              <p class="likes">1.1M likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="jana.avif" alt="jana" />
+            <div class="movie-info">
+              <h4>Jana Nayagan</h4>
+              <div class="faq-body"><p> Action/Drama/Fantasy</p>
+              <p class="likes">288.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="erracheera.avif" alt="Toxic" />
+            <div class="movie-info">
+              <h4>Erracheera </h4>
+              <div class="faq-body"><p>Horror/ Action/Thriller</p>
+              <p class="likes">230.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="ntr.avif" alt="NTR" />
+            <div class="movie-info">
+              <h4>TTR 31</h4>
+              <div class="faq-body"><p>Action/Drama</p>
+              <p class="likes">196.0K likes</p></div>
+            </div>
+          </div>
+          
+    </div> 
+      <div class="movie-list">
+          <div class="movie-card">
+            <img src="bhoot.avif" alt="peddi" />
+            <div class="movie-info">
+              <h4>Bhoot Bangla</h4>
+              <div class="faq-body"><p>Action/Comedy/Thriller</p>
+              <p class="likes">41.0K</p> likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="tere.avif" alt="jana" />
+            <div class="movie-info">
+              <h4>Tere Ishk Mein</h4>
+              <div class="faq-body"><p> Action/Drama/Romantic</p>
+              <p class="likes">28.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="predator.avif" alt="predator" />
+            <div class="movie-info">
+              <h4>Predator:Badlands </h4>
+              <div class="faq-body"><p>Sci-Fi/ Action/Thriller</p>
+              <p class="likes">230.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="dhurandhar.avif" alt="NTR" />
+            <div class="movie-info">
+              <h4>Dhurender</h4>
+              <div class="faq-body"><p>Action/Thriller</p>
+              <p class="likes">19.0K likes</p></div>
+            </div>
+          </div>
+          
+          
+      </div>
+       <div class="movie-list">
+          <div class="movie-card">
+            <img src="good_boy.avif" alt="peddi" />
+            <div class="movie-info">
+              <h4>Good Boy</h4>
+              <div class="faq-body"><p>Horror/Comedy/Thriller</p>
+              <p class="likes">8.0K</p> likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="zootopia.avif" alt="jana" />
+            <div class="movie-info">
+              <h4>Zootopia 2</h4>
+              <div class="faq-body"><p> Action/Drama/Animation</p>
+              <p class="likes">28.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="haq.avif" alt="predator" />
+            <div class="movie-info">
+              <h4>Haq</h4>
+              <div class="faq-body"><p>Social/ Action/Thriller</p>
+              <p class="likes">20.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="newton.avif" alt="NTR" />
+            <div class="movie-info">
+              <h4>Newton's 3rd law</h4>
+              <div class="faq-body"><p>Action/Suspense/Thriller</p>
+              <p class="likes">5.0K likes</p></div>
+            </div>
+          </div>
+        </div>
+      <div class="movie-list">
+          <div class="movie-card">
+            <img src="border.avif" alt="border" />
+            <div class="movie-info">
+              <h4>Border 2</h4>
+              <div class="faq-body"><p>Action/Comedy/Drama</p>
+              <p class="likes">28.0K</p> likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="girlfriend.avif" alt="girlfriend" />
+            <div class="movie-info">
+              <h4>The Girlfriend</h4>
+              <div class="faq-body"><p>Drama/Romantic</p>
+              <p class="likes">28.9K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="1990s.avif" alt="predator" />
+            <div class="movie-info">
+              <h4>1990s (telugu)</h4>
+              <div class="faq-body"><p>family/ Action/Thriller</p>
+              <p class="likes">20.2K likes</p></div>
+            </div>
+          </div>
+
+          <div class="movie-card">
+            <img src="jatadhara.avif" alt="NTR" />
+            <div class="movie-info">
+              <h4>jatadhara</h4>
+              <div class="faq-body"><p>Action/Adventure/Thriller</p>
+              <p class="likes">5.0K likes</p></div>
+            </div>
+          </div></div>
+    </div>
+
+  </div>
+  <div class="home_movies"><p>Home -> Movies->Explore</p></div>
+    <div class="enjoy">
+      <h4>Enjoy Online Ticket Booking For Movies in Delhi With SHOWTIX</h4>
+      <div class="faq-body"><p>
+        If you are planing for movie Ticket booking for the latest movies in
+        mumbai ,dont look any further.Now it is easu to get your movie tickets
+        online with SHOWTIX. SHOWTIX is India's largest online
+        entertainment ticketing platform where you can book tickets for movies,
+        plays, sports, events and activities in your city. With SHOWTIX, you
+        can book movie tickets for the latest Bollywood movies, Hollywood
+        movies, regional movies and more. You can also choose from a variety of
+        showtimes and seating options to suit your preferences. So why wait?
+        Book your movie tickets online with SHOWTIX today and enjoy a
+        hassle-free movie experience!
+      </p>
+      <h4>Latest Movies to Watch in delhi with Family and Friends</h4>
+      <p>
+        Each year the cinema world is enlightened with the latest movie trailers
+        ,increasing among everyone.This year just like previous year ,you have
+        been waitingfor some of the biggest Bollywood movies to be released with
+        the biggest star cast.Enjoy your favourite movie ,not just with your
+        friends bit in cinema hall mumbai that will be fled with
+        like-mindedpeople .Be a part of everyone reaction
+      </p>
+      <h4>Upcoming Bollywood & Hollywood Movies You Can't Miss</h4>
+
+      <p>
+        From thrilling adventures to romantic tales, the movie world never stops
+        giving surprises. Stay tuned for big releases like Thangalaan and Kalki
+        2898 AD that are already creating buzz!
+      </p>
+      <h4>Exciting Tollywood & Kollywood Movies to Book Tickets For</h4>
+      <p>
+        Fans of regional cinema can look forward to engaging Telugu and Tamil
+        films. Explore gripping stories, powerful performances, and visual
+        masterpieces releasing every week
+      </p>
+      <h4>The Joy of Movie Tickets Booking with Just a Few Clicks</h4>
+      <p>
+        Skip the queues and book your movie tickets easily online. Choose your
+        showtime, seat, and theatre—all from the comfort of your home.
+        <br />
+      </p>
+      <h3>FAQs</h3>
+      <h4>Q. How can I book movie tickets online in Delhi?</h4>
+      <p>
+        A. You can book movie tickets online in Delhi through SHOWTIX's
+        website or mobile app. Simply select your preferred movie, showtime, and
+        seating options to complete your booking.
+      </p>
+      <h4>
+        Q. Are there any discounts available for online movie ticket bookings?
+      </h4>
+      <p>
+        A. Yes, SHOWTIX often offers discounts and promotional deals for
+        online movie ticket bookings. Keep an eye out for special offers on the
+        website or app.
+      </p>
+      <h4>Q. Can I choose my seats while booking movie tickets online?</h4>
+      <p>
+        A. Yes, SHOWTIX allows you to select your preferred seats while
+        booking movie tickets online. You can view the seating layout of the
+        theatre and choose the seats that suit you best.
+      </p>
+      <h4>Q. 1. How to Know if a Movie is Suitable for Children?</h4>
+      <p>
+        Yes, Check for ratings like U/A, U, or A on the movie page before
+        booking
+      </p>
+      <h4>Can i watch Regional or International Movies?</h4>
+      <p>
+        Yes, SHOWTIX offers a wide range of
+        <strong>regional and international movies</strong> ,use the language
+        filter to find your preferred film .
+      </p></div>
+    </div>
+     <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+       <a href="contact.html"> <button class="contact-btn">Contact today!</button></a>
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Wari Loidri</a> |
+            <a href="movies.html">Chaniya Toli</a> |
+            <a href="movies.html">Sharthopor</a> |
+            <a href="movies.html">Premachi Goshta 2</a> |
+            <a href="movies.html">Lipun</a> |
+            <a href="movies.html">Yotki Thamoi</a> |
+            <a href="movies.html">Green</a> | <a href="movies.html">Aridra</a> |
+            <a href="movies.html">Erra Cheera</a> |
+            <a href="movies.html">Sunita</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Drama Movies</a> |
+            <a href="event.html">Comedy Movies</a> |
+            <a href="movies.html">Action Movies</a> |
+            <a href="movies.html">Romantic Movies</a> |
+            <a href="movies.html">Adventure Movies</a> |
+            <a href="movies.html">Thriller Movies</a> |
+            <a href="movies.html">Crime Movies</a> |
+            <a href="movies.html">Family Movies</a> |
+            <a href="movies.html">Fantasy Movies</a> |
+            <a href="movies.html">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Movies in Hindi</a> |
+            <a href="movies.html">Movies in English</a> |
+            <a href="movies.html">Movies in Telugu</a> |
+            <a href="#">Movies in Tamil</a> |
+            <a href="movies.html">Movies in Malayalam</a> |
+            <a href="movies.html">Movies in Punjabi</a> |
+            <a href="movies.html">Movies in Japanese</a> |
+            <a href="movies.html">Movies in Portuguese</a> |
+            <a href="movies.html">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section"></div>
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="event.html">Events in Mumbai</a> |
+            <a href="event.html">Events in Delhi-NCR</a> |
+            <a href="event.html">Events in Chennai</a> |
+            <a href="event.html">Events in Bengaluru</a> |
+            <a href="event.html">Events in Hyderabad</a> |
+            <a href="event.html">Events in Pune</a> |
+            <a href="event.html">Events in Ahmedabad</a> |
+            <a href="event.html">Events in Kolkata</a> |
+            <a href="event.html">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="plays.html">Plays in Mumbai</a> |
+            <a href="plays.html">Plays in Delhi-NCR</a> |
+            <a href="plays.html">Plays in Chennai</a> |
+            <a href="plays.html">Plays in Bengaluru</a> |
+            <a href="plays.html">Plays in Hyderabad</a> |
+            <a href="#">Plays in Pune</a> |
+            <a href="plays.html">Plays in Ahmedabad</a> |
+            <a href="plays.html">Plays in Kolkata</a> |
+            <a href="plays.html">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="activity.html">Activities in Mumbai</a> |
+            <a href="activity.html">Activities in Delhi-NCR</a> |
+            <a href="activity.html">Activities in Chennai</a> |
+            <a href="activity.html">Activities in Bengaluru</a> |
+            <a href="activity.html">Activities in Pune</a> |
+            <a href="activity.html">Activities in Ahmedabad</a> |
+            <a href="activity.html">Activities in Kolkata</a> |
+            <a href="activity.html">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+    <script>
+      
+      const filterHeaders = document.querySelectorAll(".filter-header");
+      filterHeaders.forEach((header) => {
+        header.addEventListener("click", () => {
+          header.parentElement.classList.toggle("collapsed");
+        });
+      });
+    </script>
+   
+      </div></div>
+     
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

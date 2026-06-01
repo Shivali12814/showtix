@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        background: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        width: 85%;
+        max-width: 1300px;
+      }
+
+      .left {
+        flex: 1;
+        padding: 40px 50px;
+      }
+
+      .left h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+      }
+
+      .benefit img {
+        width: 40px;
+        margin-right: 15px;
+      }
+
+      .benefit h3 {
+        font-size: 16px;
+        color: #222;
+        margin-bottom: 5px;
+      }
+
+      .benefit p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.4;
+      }
+
+      .right {
+        flex: 1;
+        background: #fafafa;
+        padding: 40px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #d12d35;
+        margin-bottom: 25px;
+      }
+
+      form {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      label {
+        font-size: 14px;
+        color: #444;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        outline: none;
+        font-size: 14px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #d12d35;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #b3252c;
+      }
+
+      .signin {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #444;
+      }
+
+      .signin a {
+        color: #d12d35;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .signin a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          width: 95%;
+        }
+        .left,
+        .right {
+          padding: 25px;
+        }
+        .right {
+          background: #fff;
+        }
+      }
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+</head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h2>
+          Benefits of using - Do It Yourself our new event management tool
+        </h2>
+
+        <div class="benefit">
+          <img src="./stream/clock.png" alt="icon" />
+          <div>
+            <h3>Quick & easy registration</h3>
+            <p>
+              Complete your registration with just your PAN card and bank
+              details.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <img src="./stream/task.png" alt="icon" />
+          <div>
+            <h3>Take your events live superfast!</h3>
+            <p>
+              Publish your event within just 15 minutes! Add event details,
+              dates and ticketing easily.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <img src="./stream/pen.png" alt="icon" />
+          <div>
+            <h3>Monitor analytics & insights</h3>
+            <p>
+              Track event sales, daily ticketing, and get real-time analytics
+              anytime.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="logo">Do It Yourself</div>
+        <form name="registration" onsubmit="return fun()" method="post">
+          <label for="mobile">Mobile no.</label>
+          <input type="text" name="phone" placeholder="Phone Number" />
+          <script>
+            function fun() {
+              var ph = document.registration.phone.value;
+              var phexp = /^[0-9]{10}$/;
+              if (ph === "") {
+                alert("Phone number must be filled");
+                document.registration.phone.focus();
+                return false;
+              } else if (!ph.match(phexp)) {
+                alert("Invalid phone number");
+                document.registration.phone.focus();
+                return false;
+              }
+              return true;
+            }
+          </script>
+          <button type="submit">Send OTP</button>
+        </form>
+        <div class="signin">
+          Already have an account? <a href="sign.html">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

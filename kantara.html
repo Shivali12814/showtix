@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kantara</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+      
+      .back_img {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0.2) 100%), url("kantara.avif");
+        background-size: cover;
+        background-position: center top;
+        width: 100%;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 6% 40px;
+      }
+      .back_img .book-now-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #e50914;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 36px;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: background 0.2s, transform 0.2s;
+        box-shadow: 0 4px 20px rgba(229,9,20,0.45);
+        width: fit-content;
+        margin-top: 20px;
+      }
+      .back_img .book-now-btn:hover {
+        background: #b0060f;
+        transform: translateY(-2px);
+      }
+      .about_cast {
+        padding-left: 8%;
+
+        margin-top: 4%;
+
+        margin-bottom: 4%;
+      }
+      .about {
+        margin-top: 2%;
+        border-top: 1px solid rgb(234, 224, 169);
+      }
+      .pass {
+        border-bottom: 1px solid rgb(234, 224, 169);
+      }
+      .cast {
+        margin-top: 3%;
+      }
+      .act {
+        display: flex;
+        gap: 30px;
+        margin-top: 2%;
+      }
+      .actor1 img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        justify-content: center;
+      }
+      .actor1 p {
+        text-align: center;
+      }
+     
+      @media (max-width: 992px) {
+        .back_img {
+          height: 250px;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .front_img img {
+          width: 40%;
+          height: auto;
+          padding: 2% 5%;
+        }
+
+        .act {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .actor1 img {
+          width: 150px;
+          height: 150px;
+        }
+
+        .about_cast {
+          padding-left: 4%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .front_img img {
+          width: 80%;
+          padding: 2%;
+        }
+
+        .actor1 img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .act {
+          gap: 20px;
+        }
+      }
+     
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+</head>
+
+  <body>
+    <div class="menu">
+      <div class="book">
+        <a href="home.html">
+          <img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a>
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+      <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a
+        >
+        <a href="#">Hey!</a>
+        <a href="#">Unlock Special Offers & <br />great benefit</a>
+        <a href="#">&#128365; Notification</a>
+        <a href="#">📺 Stream Library</a>
+        <a href="#"> &#128179; Play Credit Card</a>
+        <a href="#"> &#9993; Help & Support </a>
+        <a href="#">&#x1F381; Rewards</a>
+        <a href="#">&#x2606; BookAChange</a>
+      </div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="movies.html">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+      <div class="Sports"><a href="sport.html">Sports</a></div>
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+    <div class="back_img">
+      <a href="kantara_ticket.html" class="book-now-btn">&#127915; Book Now</a>
+    </div>
+
+    <div class="about_cast">
+      <div class="about"><h3>About the movie</h3></div>
+      <div class="pass">
+        <p>
+          The moment has arrived. The divine forest whispers. A Legend was born!
+        </p>
+      </div>
+      <div class="cast"><h2>Cast</h2></div>
+      <div class="act">
+        <div class="actor1">
+          <img src="rishb.avif" alt="" />
+          <p>Rishab Shetty<br />Actor</p>
+        </div>
+        <div class="actor1">
+          <img src="rukmini.avif" alt="" />
+          <p>Rukmini<br />Actor</p>
+        </div>
+        <div class="actor1">
+          <img src="devaiah.avif" alt="" />
+          <p>Gulshan Devaiah <br />Actor</p>
+        </div>
+      </div>
+      <div class="cast"><h2>Crew</h2></div>
+      <div class="act">
+        <div class="actor1">
+          <img src="rishb.avif" alt="" />
+          <p>Shashank<br />Director,writer</p>
+        </div>
+        <div class="actor1">
+          <img src="vijay.avif" alt="" />
+          <p>Vijay<br />Producer</p>
+        </div>
+        <div class="actor1">
+          <img src="arvind.avif" alt="" />
+          <p>Arvind<br />Producer</p>
+        </div>
+        <div class="actor1">
+          <img src="arjun.avif" alt="" />
+          <p>Arjun Raj<br />Producer</p>
+        </div>
+      </div>
+    </div>
+    <div class="recom">
+      <div class="recomm">
+        <h1>You Might be Like</h1>
+      </div>
+      <div class="see"><a href="movies.html">See All ></a></div>
+    </div>
+    <div class="movies_list">
+      <div class="movie">
+        <a href="#" target="_blank"
+          ><img src="tron.avif" alt="Tron: Ares poster" />
+          <summary>
+            <p>Tron: Ares</p>
+          </summary>
+
+          <span>Action/Adventure/Sci-Fi</span>
+        </a>
+      </div>
+      <div class="movie">
+        <a href="#" target="_blank"
+          ><img src="kantara.avif" alt="Kantara: A Legend — poster" />
+          <summary>
+            <p>kantara:A Legend Chapt<br />er-1</p>
+          </summary>
+          <span>Adventure/Drama/Thriller</span>
+        </a>
+      </div>
+      <div class="movie">
+        <a href="sunny.html" target="_blank"
+          ><img src="sunny.avif" alt="Sunny Sanskari Ki Tulsi Kumari poster" />
+          <p>Sunny Sanskari Ki Tulsi<br />Kumari</p>
+          <span>Comedy/Romantic</span>
+        </a>
+      </div>
+      <div class="movie">
+        <a href="jolly.html" target="_blank"
+          ><img src="jolly.avif" alt="Jolly LLB 3 poster" />
+          <p>Jolly LLB 3</p>
+          <span>Comedy/Drama</span>
+        </a>
+      </div>
+      <div class="movie">
+        <a href="narshimaha_ticket.html" target="_blank"
+          ><img src="narsimha.avif" alt="Homebound poster" />
+          <p>Mahaavtar Narsimha</p>
+          <span>Drama</span>
+        </a>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+       <a href="contact.html"> <button class="contact-btn">Contact today!</button></a>
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="explore.html">Wari Loidri</a> | <a href="#">Chaniya Toli</a> |
+            <a href="explore.html">Sharthopor</a> | <a href="#">Premachi Goshta 2</a> |
+            <a href="explore.html">Lipun</a> | <a href="#">Yotki Thamoi</a> |
+            <a href="#">Green</a> | <a href="#">Aridra</a> |
+           
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="#">Drama Movies</a> | <a href="#">Comedy Movies</a> |
+            <a href="#">Action Movies</a> | <a href="#">Romantic Movies</a> |
+            <a href="#">Adventure Movies</a> | <a href="#">Thriller Movies</a> |
+            <a href="movies.html">Crime Movies</a> | <a href="#">Family Movies</a> |
+            <a href="movies.html">Fantasy Movies</a> |
+            <a href="movies.html">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="movies.html">Movies in Hindi</a> |
+            <a href="movies.html">Movies in English</a> |
+            <a href="movies.html">Movies in Telugu</a> | <a href="#">Movies in Tamil</a> |
+            <a href="movies.html">Movies in Malayalam</a> |
+            <a href="movies.html">Movies in Punjabi</a> |
+            <a href="movies.html">Movies in Japanese</a> |
+            <a href="movies.html">Movies in Portuguese</a> |
+            <a href="movies.html">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="event.html">Events in Mumbai</a> |
+            <a href="event.html">Events in Delhi-NCR</a> |
+            <a href="event.html">Events in Chennai</a> |
+            <a href="event.html">Events in Bengaluru</a> |
+            <a href="event.html">Events in Hyderabad</a> |
+            <a href="event.html">Events in Pune</a> |
+            <a href="event.html">Events in Ahmedabad</a> |
+            <a href="event.html">Events in Kolkata</a> |
+            <a href="event.html">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+            <a href="#">Cinemas in Bengaluru</a> |
+            <a href="#">Cinemas in Hyderabad</a> |
+            <a href="#">Cinemas in Pune</a> |
+            <a href="#">Cinemas in Ahmedabad</a> |
+            <a href="#">Cinemas in Kolkata</a> |
+            <a href="#">Cinemas in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Plays in Mumbai</a> |
+            <a href="#">Plays in Delhi-NCR</a> |
+            <a href="#">Plays in Chennai</a> |
+            <a href="#">Plays in Bengaluru</a> |
+            <a href="#">Plays in Hyderabad</a> | <a href="#">Plays in Pune</a> |
+            <a href="#">Plays in Ahmedabad</a> |
+            <a href="#">Plays in Kolkata</a> |
+            <a href="#">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Activities in Mumbai</a> |
+            <a href="#">Activities in Delhi-NCR</a> |
+            <a href="#">Activities in Chennai</a> |
+            <a href="#">Activities in Bengaluru</a> |
+            <a href="#">Activities in Pune</a> |
+            <a href="#">Activities in Ahmedabad</a> |
+            <a href="#">Activities in Kolkata</a> |
+            <a href="#">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

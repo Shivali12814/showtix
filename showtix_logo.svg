@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" width="100%" role="img">
+  <title>SHOWTIX logo</title>
+  <desc>SHOWTIX brand logo with Bebas Neue font, film strip frame, red and white 3D lettering</desc>
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap');
+    </style>
+    <linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff2020"/>
+      <stop offset="100%" stop-color="#8b0000"/>
+    </linearGradient>
+    <linearGradient id="wg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cccccc"/>
+    </linearGradient>
+    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#2e2e2e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Film strip bars -->
+  <rect x="0" y="0" width="680" height="22" fill="url(#fg)"/>
+  <rect x="0" y="138" width="680" height="22" fill="url(#fg)"/>
+
+  <!-- Film holes top -->
+  <rect x="10" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="42" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="74" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="106" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="138" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="170" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="202" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="234" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="266" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="298" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="330" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="362" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="394" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="426" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="458" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="490" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="522" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="554" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="586" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="618" y="4" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="650" y="4" width="14" height="14" rx="3" fill="#444"/>
+
+  <!-- Film holes bottom -->
+  <rect x="10" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="42" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="74" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="106" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="138" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="170" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="202" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="234" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="266" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="298" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="330" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="362" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="394" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="426" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="458" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="490" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="522" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="554" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="586" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="618" y="142" width="14" height="14" rx="3" fill="#444"/>
+  <rect x="650" y="142" width="14" height="14" rx="3" fill="#444"/>
+
+  <!-- Main dark background -->
+  <rect x="0" y="22" width="680" height="116" fill="#0d0d0d"/>
+
+  <!-- Side accent bars -->
+  <rect x="0" y="22" width="5" height="116" fill="url(#rg)"/>
+  <rect x="675" y="22" width="5" height="116" fill="url(#rg)"/>
+
+  <!-- Subtle red glow behind text -->
+  <rect x="80" y="35" width="520" height="90" rx="8" fill="#e50914" opacity="0.08"/>
+
+  <!-- 3D dark shadow -->
+  <text x="347" y="114"
+        font-family="'Bebas Neue', Impact, Arial Narrow, sans-serif"
+        font-size="92" font-weight="400"
+        fill="#4a0000" text-anchor="middle" letter-spacing="10">SHOWTIX</text>
+
+  <!-- Red layer -->
+  <text x="344" y="111"
+        font-family="'Bebas Neue', Impact, Arial Narrow, sans-serif"
+        font-size="92" font-weight="400"
+        fill="url(#rg)" text-anchor="middle" letter-spacing="10">SHOWTIX</text>
+
+  <!-- White top layer -->
+  <text x="340" y="107"
+        font-family="'Bebas Neue', Impact, Arial Narrow, sans-serif"
+        font-size="92" font-weight="400"
+        fill="url(#wg)" text-anchor="middle" letter-spacing="10">SHOWTIX</text>
+
+  <!-- Red underline -->
+  <rect x="90" y="118" width="500" height="3" rx="1.5" fill="url(#rg)"/>
+
+  <!-- Ticket badge -->
+  <g transform="translate(556, 34)">
+    <rect x="0" y="0" width="38" height="22" rx="5" fill="#e50914"/>
+    <circle cx="0" cy="11" r="5.5" fill="#0d0d0d"/>
+    <circle cx="38" cy="11" r="5.5" fill="#0d0d0d"/>
+    <line x1="12" y1="1" x2="12" y2="21" stroke="#0d0d0d" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="25" y="15" font-family="'Bebas Neue', Arial Narrow, sans-serif" font-size="11" fill="white" text-anchor="middle" letter-spacing="1">TIX</text>
+  </g>
+
+  <!-- Star -->
+  <polygon points="596,28 598,34 604,34 599,38 601,44 596,40 591,44 593,38 588,34 594,34"
+           fill="#e50914"/>
+
+</svg>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Movie Stream — Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* ── Accordion footer sections ── */
+      .footer-section h4 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .footer-section h4:hover { color: #e50914; }
+      .footer-section h4::after {
+        content: '\﹢';
+        font-size: 16px;
+        color: #888;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-section.faq-open h4::after {
+        content: '\－';
+        color: #e50914;
+      }
+      .footer-section .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .footer-section.faq-open .faq-body {
+        max-height: 500px;
+      }
+      h2 {
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+      }
+
+      .section {
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-bottom: 40px;
+      }
+
+      .movie-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .movie {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.3s ease;
+      }
+
+      .movie:hover {
+        transform: scale(1.05);
+      }
+
+      .movie img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #e91e63;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 768px) {
+        h2 {
+          font-size: 1.3rem;
+        }
+        .movie img {
+          height: 230px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .movie img {
+          height: 200px;
+        }
+        body {
+          padding: 15px;
+        }
+      }
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+
+    <style>
+      /* SHOWTIX Dark Theme — Filter Pages */
+      body { background:#0d0d0d !important; color:#fff !important; }
+      .container { padding: 20px 4%; gap:20px; }
+      .filters {
+        background:#1c1c1c !important;
+        border:1px solid rgba(255,255,255,0.07) !important;
+        border-radius:12px !important;
+        box-shadow:0 4px 24px rgba(0,0,0,0.4) !important;
+        color:#fff !important;
+      }
+      .filters h3 { color:#fff !important; border-bottom-color:rgba(255,255,255,0.1) !important; font-family:'Bebas Neue',Impact,sans-serif; letter-spacing:1px; font-size:22px !important; }
+      .filter-header h4 { color:#ccc !important; font-family:'Poppins',sans-serif; font-size:14px !important; font-weight:600; }
+      .filter-header h4:hover { color:#e50914 !important; }
+      .filter-group { border-bottom-color:rgba(255,255,255,0.06) !important; }
+      .filter-options span {
+        background:transparent !important;
+        border:1px solid rgba(255,255,255,0.15) !important;
+        color:#ccc !important;
+        font-size:13px !important;
+        border-radius:20px;
+        padding:5px 12px;
+        cursor:pointer;
+        transition:all 0.2s;
+      }
+      .filter-options span:hover { border-color:#e50914 !important; color:#e50914 !important; }
+      .movies-section h2 { color:#fff !important; font-family:'Bebas Neue',Impact,sans-serif; letter-spacing:1.5px; font-size:26px !important; }
+      .languages span {
+        border-color:rgba(255,255,255,0.2) !important;
+        color:#ccc !important;
+        font-size:13px !important;
+      }
+      .languages span:hover { border-color:#e50914 !important; color:#e50914 !important; }
+      .movie-card {
+        background:#1c1c1c !important;
+        border:1px solid rgba(255,255,255,0.06) !important;
+        box-shadow:0 4px 16px rgba(0,0,0,0.4) !important;
+        border-radius:10px !important;
+      }
+      .movie-card h4 { color:#fff !important; font-family:'Poppins',sans-serif; font-size:14px !important; }
+      .movie-card p, .movie-card span { color:#aaa !important; font-size:12px !important; }
+      .movie-card .book-btn, .movie-card button, .book-btn {
+        background:#e50914 !important; color:#fff !important;
+        border:none; border-radius:6px; padding:8px 16px;
+        font-family:'Poppins',sans-serif; font-weight:600;
+        cursor:pointer; transition:all 0.2s;
+        font-size:13px !important;
+      }
+      .movie-card .book-btn:hover, .book-btn:hover { background:#b0060f !important; }
+      h1,h2,h3,h4 { color:#fff !important; }
+      p { color:#aaa !important; }
+    </style>
+</head>
+  <body>
+    <div class="menu">
+      <div class="book">
+        <a href="home.html"
+          ><img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a>
+      </div>
+      <div class="search">
+        <div class="search_icon">
+          <a href="#" aria-label="Search"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Search for Movies,Events,Plays,Sports and Activities"
+          />
+        </div>
+      </div>
+      <div class="city"><a href="#">Delhi </a></div>
+     <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a
+        >
+        <a href="#">Hey!</a>
+        <a href="#">Unlock Special Offers & <br />great benefit</a>
+        <a href="#">&#128365; Notification</a>
+        <a href="#">📺 Stream Library</a>
+        <a href="#"> &#128179; Play Credit Card</a>
+        <a href="#"> &#9993; Help & Support </a>
+        <a href="#">&#x1F381; Rewards</a>
+        <a href="#">&#x2606; BookAChange</a>
+      </div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    </div>
+    <div class="menu_list">
+      <div class="movies">
+        <a href="movies.html">Movies</a>
+      </div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img src="vanvas.webp" alt="Promotional slide 1" />
+      </div>
+
+      <div class="mySlides fade">
+        <img src="stream/baap.jpg" alt="Promotional slide 2" />
+      </div>
+
+      <div class="mySlides fade">
+        <img src="stream/bringherback.avif" alt="Promotional slide 3" />
+      </div>
+      <div class="mySlides fade">
+        <img src="stream/conjuring.jpg" alt="Promotional slide 3" />
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+      <div id="span1">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Premiere of the Week</h2>
+      <div class="movie-container">
+        <div class="movie">
+          <img src="./stream/premiere1.avif" alt="Movie 1" />
+          <span class="badge">PREMIERE</span>
+        </div>
+        <div class="movie">
+          <img src="./stream/premere2.avif" alt="Movie 2" />
+          <span class="badge">PREMIERE</span>
+        </div>
+        <div class="movie">
+          <img src="./stream/premiere3.avif" alt="Movie 3" />
+          <span class="badge">PREMIERE</span>
+        </div>
+        <div class="movie">
+          <img src="./stream/premere4.avif" alt="Movie 4" />
+          <span class="badge">PREMIERE</span>
+        </div>
+        <div class="movie">
+          <img src="./stream/premeere5.avif" alt="Movie 5" />
+          <span class="badge">PREMIERE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- New on Stream Section -->
+    <div class="section">
+      <h2>New on Stream</h2>
+      <div class="movie-container">
+        <div class="movie">
+          <img src="./stream/stream1.avif" alt="Sir Movie" />
+        </div>
+        <div class="movie">
+          <img src="./stream/stream2.avif" alt="Movie 2" />
+        </div>
+        <div class="movie">
+          <img src="./stream/stream3.avif" alt="Movie 3" />
+        </div>
+        <div class="movie">
+          <img src="./stream/stream4.avif" alt="Movie 4" />
+        </div>
+        <div class="movie">
+          <img src="./stream/stream5.avif" alt="Movie 5" />
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Top TV Show</h2>
+      <div class="movie-container">
+        <div class="movie">
+          <img src="./stream/tv1.avif" alt="Sir Movie" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv2.avif" alt="tv_show 2" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv3.avif" alt="TV_show3" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv4.avif" alt="TV_Show 4" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv5.avif" alt="TV_show3 5" />
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Free Movies For You</h2>
+      <div class="movie-container">
+        <div class="movie">
+          <img src="./stream/free.avif" alt="Sir Movie" />
+        </div>
+        <div class="movie">
+          <img src="./stream/free2.avif" alt="movie 2" />
+        </div>
+        <div class="movie">
+          <img src="./stream/free3.avif" alt="movie 3" />
+        </div>
+        <div class="movie">
+          <img src="./stream/free4.avif" alt="movie 4" />
+        </div>
+        <div class="movie">
+          <img src="./stream/free5.avif" alt="movie 5" />
+        </div>
+      </div>
+    </div>
+    <div class="premiere">
+      <div class="premiere_logo">
+        <a href="#">
+          <img src="./stream/exclusiv.avif" alt="Premiere logo"
+        /></a>
+      </div>
+
+      <div class="Premiere_list">
+        <div class="one">
+          <a href="#"><img src="./stream/exclusiv1.avif" alt="exclusiv" /> </a>
+        </div>
+        <div class="one">
+          <a href="#"><img src="./stream/exclusive2.avif" alt="exclusiv" /> </a>
+        </div>
+        <div class="one">
+          <a href="#"><img src="./stream/exclusive3.avif" alt="exclusiv" /> </a>
+        </div>
+        <div class="one">
+          <a href="#"><img src="./stream/exclusive4.avif" alt="exclusiv" /> </a>
+        </div>
+        <div class="one">
+          <a href="#"><img src="./stream/exclusive5.avif" alt="exclusiv" /> </a>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>New on Stream</h2>
+      <div class="movie-container">
+        <div class="movie">
+          <img src="./stream/tv1.avif" alt="Sir Movie" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv2.avif" alt="Movie 2" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv3.avif" alt="Movie 3" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv4.avif" alt="Movie 4" />
+        </div>
+        <div class="movie">
+          <img src="./stream/tv5.avif" alt="Movie 5" />
+        </div>
+      </div>
+    </div>
+    <div class="home_movies">
+      <p><a href="home.html">Home -> Stream</a></p>
+    </div>
+    <div class="enjoy">
+      <h4>Watch movies Online 24x7-Weekdays or Weekends!</h4>
+      <div class="faq-body"><p>
+        Are you looking for platforms to fill your mundene days with drama and
+        emotions?Entertainment has been a major source of laughter ,love ,and
+        happiness in india and around the global.Why dont you bring back all of
+        these with just a few clicks on yours mobile screens? It is a fact that
+        love to bring mvies on our free days.
+      </p>
+      <h4>Watch the latest movies 2025 online in HD!</h4>
+      <p>
+        Movies have been around us for decades now. Most importantly, the love
+        for them is only increasing. There are several reasons for this,
+        however, the most important thing is that movies are the best way to
+        entertain yourself. If you love to spend your weekends with your
+        favourite movies, streaming them online, or binge-watching with your
+        partner, you can enjoy the latest movies with BMS Stream by renting them
+        at a reasonable price. We offer a variety of award-winning movies to
+        stream on hundreds of internet-connected devices.
+      </p>
+      <h4>
+        Live stream new movies for your daily dose of entertainment in 2025
+      </h4>
+      <p>
+        Leave your worries behind, and bring a tub of popcorn along to enjoy the
+        newest and most exciting releases with BMS Stream. Our films can be
+        streamed or watched online and are suitable for a wide age group. From
+        the latest releuze to your all-time favourite, ask, and we have it! Over
+        the years, TV-series have evolved as a popular source of entertainment
+        for not just millennials but Gen Z as well. Here you will find all the
+        latest shows and the best tv-series to make your weekends fun-filled
+      </p>
+      <h4>We offer movie streaming for everyone!</h4>
+      <p>
+        This platform is a complete package that can introduce you to futuristic
+        sci-fi or take you back in the days within a few seconds. We also
+        feature a specific section with all the latest movies on display to
+        bring more freshness and positivity to your life. So what are you
+        waiting for? Tune in to enjoy your favourite HD streaming movies or live
+        streaming movies with minimum ads!
+      </p></div>
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left">
+          <p>
+            🎭<b>List your Show</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a
+            show, event, activity or a great experience? Partner with us & get
+            listed on SHOWTIX
+          </p>
+        </div>
+        <a href="contact.html"> <button class="contact-btn">Contact today!</button></a>
+      </div>
+
+      <div class="footer-icons">
+        <div>
+          <i class="fa-solid fa-headset"
+            ><img src="customer.png" alt="customer_care"
+          /></i>
+          <p>24/7 CUSTOMER CARE</p>
+        </div>
+        <div>
+          <i class="">
+            <img src="ticket.png" alt="ticket_icon" />
+          </i>
+          <p>RESEND BOOKING CONFIRMATION</p>
+        </div>
+        <div>
+          <i class=""><img src="email.png" alt="email_icon" /></i>
+          <p>SUBSCRIBE TO THE NEWSLETTER</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>UPCOMING MOVIES IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="#">Wari Loidri</a> | <a href="#">Chaniya Toli</a> |
+            <a href="#">Sharthopor</a> | <a href="#">Premachi Goshta 2</a> |
+            <a href="#">Lipun</a> | <a href="#">Yotki Thamoi</a> |
+            <a href="#">Green</a> | <a href="#">Aridra</a> |
+            <a href="#">Erra Cheera</a> |
+            <a href="#">Sunita</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY GENRE</h4>
+          <div class="faq-body"><p>
+            <a href="#">Drama Movies</a> | <a href="#">Comedy Movies</a> |
+            <a href="#">Action Movies</a> | <a href="#">Romantic Movies</a> |
+            <a href="#">Adventure Movies</a> | <a href="#">Thriller Movies</a> |
+            <a href="#">Crime Movies</a> | <a href="#">Family Movies</a> |
+            <a href="#">Fantasy Movies</a> |
+            <a href="#">Anime Movies</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>MOVIES BY LANGUAGE</h4>
+          <div class="faq-body"><p>
+            <a href="#">Movies in Hindi</a> |
+            <a href="#">Movies in English</a> |
+            <a href="#">Movies in Telugu</a> | <a href="#">Movies in Tamil</a> |
+            <a href="#">Movies in Malayalam</a> |
+            <a href="#">Movies in Punjabi</a> |
+            <a href="#">Movies in Japanese</a> |
+            <a href="#">Movies in Portuguese</a> |
+            <a href="#">Movies in Chattisgarhi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>SPORTS EVENTS IN DELHI</h4>
+          <div class="faq-body"><p>
+            <a href="#">Running</a> | <a href="#">Chess</a> |
+            <a href="#">Cricket</a> | <a href="#">Cycling</a> |
+            <a href="#">Kabaddi</a> | <a href="#">Baseball</a> |
+            <a href="#">Horse Race</a> | <a href="#">Boat Race</a> |
+            <a href="#">Archery</a> |
+            <a href="#">Bowling</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>EVENTS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Events in Mumbai</a> |
+            <a href="#">Events in Delhi-NCR</a> |
+            <a href="#">Events in Chennai</a> |
+            <a href="#">Events in Bengaluru</a> |
+            <a href="#">Events in Hyderabad</a> |
+            <a href="#">Events in Pune</a> |
+            <a href="#">Events in Ahmedabad</a> |
+            <a href="#">Events in Kolkata</a> |
+            <a href="#">Events in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>CINEMAS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Cinemas in Mumbai</a> |
+            <a href="#">Cinemas in Delhi-NCR</a> |
+            <a href="#">Cinemas in Chennai</a> |
+            <a href="#">Cinemas in Bengaluru</a> |
+            <a href="#">Cinemas in Hyderabad</a> |
+            <a href="#">Cinemas in Pune</a> |
+            <a href="#">Cinemas in Ahmedabad</a> |
+            <a href="#">Cinemas in Kolkata</a> |
+            <a href="#">Cinemas in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>PLAYS IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Plays in Mumbai</a> |
+            <a href="#">Plays in Delhi-NCR</a> |
+            <a href="#">Plays in Chennai</a> |
+            <a href="#">Plays in Bengaluru</a> |
+            <a href="#">Plays in Hyderabad</a> | <a href="#">Plays in Pune</a> |
+            <a href="#">Plays in Ahmedabad</a> |
+            <a href="#">Plays in Kolkata</a> |
+            <a href="#">Plays in Kochi</a>
+          </p></div>
+        </div>
+
+        <div class="footer-section">
+          <h4>ACTIVITIES IN TOP CITIES</h4>
+          <div class="faq-body"><p>
+            <a href="#">Activities in Mumbai</a> |
+            <a href="#">Activities in Delhi-NCR</a> |
+            <a href="#">Activities in Chennai</a> |
+            <a href="#">Activities in Bengaluru</a> |
+            <a href="#">Activities in Pune</a> |
+            <a href="#">Activities in Ahmedabad</a> |
+            <a href="#">Activities in Kolkata</a> |
+            <a href="#">Activities in Kochi</a>
+          </p></div>
+        </div>
+        <div class="show_logo">
+          <a href="home.html"><img src="showtix_logo.svg" alt="SHOWTIX" /></a>
+        </div>
+        <div class="app">
+          <a href="https://www.google.com"
+            ><img src="facebook.png" alt="facebook" /></a
+          ><a href="https://www.youtube.com"
+            ><img src="youtube.png" alt="youtube" /></a
+          ><a href="https://www.instagram.com" alt="instagram"
+            ><img src="instagram.png" alt="instagram" /></a
+          ><a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a
+          ><a href="https://in.linkedin.com" alt="linked in"
+            ><img src="in.png" alt="linked_in "
+          /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+        <div class="copyright">
+          The content and images Used on this site are copyright veste with the
+          respective owners. The use of the cotent and imags on this website is
+          intended tp promote the artist shall be implied Unauthorized use is
+          prohibited and punishble by law .
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.footer-section h4').forEach(function (h4) {
+          h4.addEventListener('click', function () {
+            h4.closest('.footer-section').classList.toggle('faq-open');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

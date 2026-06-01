@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahaavtar Narsimha | SHOWTIX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .footer-section h4 { cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;padding:4px 0;transition:color 0.2s; }
+      .footer-section h4:hover { color:#e50914; }
+      .footer-section h4::after { content:'\﹢';font-size:16px;color:#888;flex-shrink:0; }
+      .footer-section.faq-open h4::after { content:'\－';color:#e50914; }
+      .footer-section .faq-body { max-height:0;overflow:hidden;transition:max-height 0.35s ease; }
+      .footer-section.faq-open .faq-body { max-height:500px; }
+      .back_img {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.88) 35%, rgba(0,0,0,0.25) 100%), url("narsimha.avif");
+        background-size: cover;
+        background-position: center top;
+        width: 100%;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 6% 40px;
+      }
+      .back_img .book-now-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #e50914;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 36px;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: background 0.2s, transform 0.2s;
+        box-shadow: 0 4px 20px rgba(229,9,20,0.45);
+        width: fit-content;
+        margin-top: 20px;
+      }
+      .back_img .book-now-btn:hover { background:#b0060f; transform:translateY(-2px); }
+      .about_cast { padding-left:8%; margin-top:4%; margin-bottom:4%; }
+      .about { margin-top:2%; border-top:1px solid rgba(234,224,169,0.3); }
+      .about h3 { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:#fff; margin:12px 0 8px; }
+      .pass { border-bottom:1px solid rgba(234,224,169,0.3); padding-bottom:16px; }
+      .pass p { color:#aaa; font-size:14px; line-height:1.8; max-width:700px; }
+      .cast { margin-top:3%; }
+      .cast h2 { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:#fff; margin-bottom:4px; }
+      .act { display:flex; gap:30px; margin-top:2%; flex-wrap:wrap; }
+      .actor1 img { border-radius:50%; width:120px; height:120px; object-fit:cover; display:block; margin:0 auto 8px; }
+      .actor1 p { text-align:center; font-size:13px; color:#ccc; white-space:pre-line; }
+      .movie-info-pills { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 24px; }
+      .mpill { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#ccc; padding:5px 14px; border-radius:20px; font-size:12px; font-family:'Poppins',sans-serif; }
+      .mpill.red { background:rgba(229,9,20,0.12); border-color:rgba(229,9,20,0.3); color:#e50914; font-weight:600; }
+      @media(max-width:768px) { .back_img { min-height:280px; } .act { gap:16px; } .actor1 img { width:90px;height:90px; } }
+    </style>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+  </head>
+  <body>
+    <div class="menu">
+      <div class="book"><a href="home.html"><img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a></div>
+      <div class="search">
+        <div class="search_icon"><a href="#" aria-label="Search"><i class="fa fa-search"></i></a></div>
+        <div class="input"><input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities" /></div>
+      </div>
+      <div class="city"><a href="#">Delhi</a></div>
+      <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav"></div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+    <div class="menu_list">
+      <div class="movies"><a href="movies.html">Movies</a></div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+
+    <div class="back_img">
+      <div class="movie-info-pills">
+        <span class="mpill red">UA</span>
+        <span class="mpill">Hindi / Telugu / Tamil / Kannada</span>
+        <span class="mpill">2h 45m</span>
+        <span class="mpill">Mythological / Action</span>
+      </div>
+      <a href="narsimha_ticket.html" class="book-now-btn">&#127915; Book Now</a>
+    </div>
+
+    <div class="about_cast">
+      <div class="about"><h3>About the Movie</h3></div>
+      <div class="pass"><p>A grand mythological epic retelling the divine battle between the fearsome avatar Narasimha and the demon king Hiranyakashipu — an eternal war between devotion and tyranny, faith and power.</p></div>
+      <div class="cast"><h2>Cast</h2></div>
+      <div class="act">        <div class="actor1">
+          <img src="vijay.avif" alt="Vijay Deverakonda" />
+          <p>Vijay Deverakonda
+Actor</p>
+        </div>
+        <div class="actor1">
+          <img src="acotress.avif" alt="Pooja Hegde" />
+          <p>Pooja Hegde
+Actress</p>
+        </div>
+        <div class="actor1">
+          <img src="ntr.avif" alt="Prashanth Neel" />
+          <p>Prashanth Neel
+Actor</p>
+        </div>
+</div>
+      <div class="cast"><h2>Crew</h2></div>
+      <div class="act">        <div class="actor1">
+          <img src="anurag.avif" alt="S.S. Rajamouli" />
+          <p>S.S. Rajamouli
+Director</p>
+        </div>
+</div>
+    </div>
+
+    <div class="recom">
+      <div class="recomm"><h1>You Might Also Like</h1></div>
+      <div class="see"><a href="movies.html">See All &gt;</a></div>
+    </div>
+    <div class="movies_list">
+      <div class="movie"><a href="thama.html"><img src="thama.avif" alt="Thama" /><p>Thama</p><span>Horror/Comedy</span></a></div>
+      <div class="movie"><a href="kantara.html"><img src="kantara.avif" alt="Kantara" /><p>Kantara Chapter 1</p><span>Adventure/Thriller</span></a></div>
+      <div class="movie"><a href="jolly.html"><img src="jolly.avif" alt="Jolly LLB 3" /><p>Jolly LLB 3</p><span>Comedy/Drama</span></a></div>
+      <div class="movie"><a href="sunny.html"><img src="sunny.avif" alt="Sunny Sanskari" /><p>Sunny Sanskari</p><span>Comedy/Romantic</span></a></div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left"><p>&#127917; <b>List your Show</b> &nbsp;&nbsp; Partner with us &amp; get listed on SHOWTIX</p></div>
+        <a href="contact.html"><button class="contact-btn">Contact today!</button></a>
+      </div>
+      <div class="footer-icons">
+        <div><img src="customer.png" alt="customer_care" /><p>24/7 CUSTOMER CARE</p></div>
+        <div><img src="ticket.png" alt="ticket_icon" /><p>RESEND BOOKING CONFIRMATION</p></div>
+        <div><img src="email.png" alt="email_icon" /><p>SUBSCRIBE TO NEWSLETTER</p></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section"><h4>UPCOMING MOVIES</h4><div class="faq-body"><p><a href="movies.html">Thama</a> | <a href="movies.html">Kantara Chapter 1</a> | <a href="movies.html">Jolly LLB 3</a></p></div></div>
+        <div class="footer-section"><h4>MOVIES BY GENRE</h4><div class="faq-body"><p><a href="movies.html">Drama</a> | <a href="movies.html">Comedy</a> | <a href="movies.html">Action</a> | <a href="movies.html">Romantic</a></p></div></div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.facebook.com"><img src="facebook.png" alt="facebook" /></a>
+          <a href="https://www.youtube.com"><img src="youtube.png" alt="youtube" /></a>
+          <a href="https://www.instagram.com"><img src="instagram.png" alt="instagram" /></a>
+        </div>
+        <div class="copyright">copyright 2025 @ Arunima Mishra</div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.footer-section h4').forEach(function(h4) {
+          h4.addEventListener('click', function() { h4.closest('.footer-section').classList.toggle('faq-open'); });
+        });
+      });
+    </script>
+  </body>
+</html>

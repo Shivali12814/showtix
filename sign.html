@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | SHOWTIX</title>
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+
+      body {
+        background: linear-gradient(135deg, #e509148d, #b31217);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .register-box {
+        background: #fff;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        padding: 30px 25px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        text-align: center;
+        animation: pop 0.3s ease-in-out;
+      }
+
+      @keyframes pop {
+        from { transform: scale(0.9); opacity: 0; }
+        to   { transform: scale(1);   opacity: 1; }
+      }
+
+      .register-box h2 { color: #333; margin-bottom: 10px; }
+      .register-box > p { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+
+      .input-group { display: flex; flex-direction: column; gap: 12px; }
+
+      .input-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        outline: none;
+        transition: border 0.2s;
+      }
+      .input-group input:focus { border-color: #e50914; }
+
+      .register-btn {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .register-btn:hover { background-color: #c0070f; }
+      .register-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+      #errorMsg { font-size: 0.85rem; margin-top: 8px; min-height: 20px; }
+
+      .signin-link { margin-top: 15px; font-size: 0.9rem; color: #555; }
+
+      .open-modal-btn {
+        background: #e50914;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        margin-left: 6px;
+      }
+      .open-modal-btn:hover { background: #c0070f; }
+
+      .home-link { margin-top: 12px; font-size: 0.85rem; color: #888; }
+      .home-link a { color: #e50914; text-decoration: none; font-weight: 500; }
+
+      /* ── Modal ── */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      }
+      .overlay.show { display: flex; }
+
+      .modal {
+        background: #fff;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 420px;
+        padding: 30px 25px;
+        position: relative;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.25);
+        animation: pop 0.25s ease-in-out;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 12px; right: 16px;
+        font-size: 22px;
+        cursor: pointer;
+        color: #555;
+        line-height: 1;
+      }
+      .close-btn:hover { color: #e50914; }
+
+      .modal h2 { font-size: 1.4rem; margin-bottom: 18px; color: #333; }
+
+      .social-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 11px 15px;
+        margin: 8px 0;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: background 0.2s;
+        width: 100%;
+      }
+      .social-btn:hover { background: #f5f5f5; }
+      .social-btn img { width: 22px; height: 22px; object-fit: contain; }
+
+      .divider {
+        margin: 12px 0;
+        font-size: 0.85rem;
+        color: #999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .divider::before, .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #ddd;
+      }
+
+      /* Login form inside modal */
+      .login-form { display: none; flex-direction: column; gap: 12px; margin-top: 5px; }
+      .login-form.show { display: flex; }
+
+      .login-form input {
+        padding: 11px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        outline: none;
+      }
+      .login-form input:focus { border-color: #e50914; }
+
+      .login-btn {
+        background: #e50914;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .login-btn:hover { background: #c0070f; }
+      .login-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+      .back-link {
+        background: none;
+        border: none;
+        color: #e50914;
+        cursor: pointer;
+        font-size: 0.9rem;
+        text-decoration: underline;
+        margin-top: 4px;
+      }
+
+      #loginError { color: red; font-size: 0.85rem; min-height: 18px; }
+
+      .terms { font-size: 0.78rem; color: #999; margin-top: 14px; }
+      .terms a { color: #e50914; text-decoration: none; }
+
+      @media (max-width: 480px) {
+        .register-box { padding: 25px 18px; }
+        .modal { padding: 25px 18px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ── Register Box ── -->
+    <div class="register-box">
+      <h2>Create an Account</h2>
+      <p>Register to book your favourite movies, shows, and more!</p>
+
+      <div class="input-group">
+        <input type="text"     id="name"     placeholder="Full Name" />
+        <input type="email"    id="email"    placeholder="Email Address" />
+        <input type="tel"      id="mobile"   placeholder="Mobile Number (10 digits)" />
+        <input type="password" id="password" placeholder="Password (min 6 chars)" />
+      </div>
+
+      <p id="errorMsg"></p>
+      <button class="register-btn" id="registerBtn">Register</button>
+
+      <div class="signin-link">
+        Already have an account?
+        <button class="open-modal-btn" id="openModalBtn">Sign In</button>
+      </div>
+
+      <p class="home-link">Go to <a href="home.html">Home</a></p>
+    </div>
+
+    <!-- ── Sign In Modal ── -->
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+
+        <!-- Step 1: choose method -->
+        <div id="stepChoose">
+          <h2>Sign In</h2>
+
+          <button class="social-btn" id="emailLoginBtn">
+            <img src="email.png" alt="Email" onerror="this.style.display='none'" />
+            Continue with Email
+          </button>
+
+          <button class="social-btn" style="opacity:0.5;cursor:default;">
+            <img src="stream/google.png" alt="Google" onerror="this.style.display='none'" />
+            Continue with Google
+          </button>
+
+          <div class="divider">OR</div>
+
+          <button class="social-btn" style="opacity:0.5;cursor:default;">
+            🇮🇳 +91 &nbsp; Continue with Mobile (coming soon)
+          </button>
+
+          <p class="terms">
+            By continuing, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- Step 2: email + password login -->
+        <div id="stepLogin" style="display:none;">
+          <h2>Sign In with Email</h2>
+          <div class="login-form show">
+            <input type="email"    id="loginEmail"    placeholder="Email Address" />
+            <input type="password" id="loginPassword" placeholder="Password" />
+            <p id="loginError"></p>
+            <button class="login-btn" id="doLoginBtn">Login</button>
+            <button class="back-link" id="backToChoose">← Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API = "http://localhost:5000/api";
+
+      // ── Modal open / close ──
+      const overlay       = document.getElementById("overlay");
+      const openModalBtn  = document.getElementById("openModalBtn");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+
+      openModalBtn.addEventListener("click", () => overlay.classList.add("show"));
+      closeModalBtn.addEventListener("click", closeModal);
+      overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+
+      function closeModal() {
+        overlay.classList.remove("show");
+        showStep("stepChoose");
+        document.getElementById("loginEmail").value = "";
+        document.getElementById("loginPassword").value = "";
+        document.getElementById("loginError").textContent = "";
+      }
+
+      function showStep(id) {
+        document.getElementById("stepChoose").style.display = id === "stepChoose" ? "block" : "none";
+        document.getElementById("stepLogin").style.display  = id === "stepLogin"  ? "block" : "none";
+      }
+
+      document.getElementById("emailLoginBtn").addEventListener("click", () => showStep("stepLogin"));
+      document.getElementById("backToChoose").addEventListener("click", () => showStep("stepChoose"));
+
+      // ── Login ──
+      document.getElementById("doLoginBtn").addEventListener("click", async () => {
+        const email    = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+        const errEl    = document.getElementById("loginError");
+        const btn      = document.getElementById("doLoginBtn");
+
+        if (!email || !password) {
+          errEl.textContent = "⚠ Please enter email and password.";
+          return;
+        }
+
+        btn.textContent = "Logging in...";
+        btn.disabled = true;
+        errEl.textContent = "";
+
+        try {
+          const res  = await fetch(`${API}/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            window.location.href = "home.html";
+          } else {
+            errEl.textContent = "⚠ " + data.message;
+          }
+        } catch {
+          errEl.textContent = "⚠ Cannot connect to server. Is the backend running?";
+        } finally {
+          btn.textContent = "Login";
+          btn.disabled = false;
+        }
+      });
+
+      // ── Register ──
+      document.getElementById("registerBtn").addEventListener("click", async () => {
+        const name     = document.getElementById("name").value.trim();
+        const email    = document.getElementById("email").value.trim();
+        const mobile   = document.getElementById("mobile").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errEl    = document.getElementById("errorMsg");
+        const btn      = document.getElementById("registerBtn");
+
+        errEl.style.color = "red";
+
+        if (!name || !email || !mobile || !password) {
+          errEl.textContent = "⚠ Please fill out all fields.";
+          return;
+        }
+        if (!/^\d{10}$/.test(mobile)) {
+          errEl.textContent = "⚠ Enter a valid 10-digit mobile number.";
+          return;
+        }
+        if (password.length < 6) {
+          errEl.textContent = "⚠ Password must be at least 6 characters.";
+          return;
+        }
+
+        btn.textContent = "Registering...";
+        btn.disabled = true;
+        errEl.textContent = "";
+
+        try {
+          const res  = await fetch(`${API}/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, mobile, password })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            errEl.style.color = "green";
+            errEl.textContent = "✅ Registered! Redirecting...";
+            setTimeout(() => (window.location.href = "home.html"), 1000);
+          } else {
+            errEl.textContent = "⚠ " + data.message;
+          }
+        } catch {
+          errEl.textContent = "⚠ Cannot connect to server. Is the backend running?";
+        } finally {
+          btn.textContent = "Register";
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunny Sanskari Ki Tulsi Kumari | Book Tickets | SHOWTIX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="ticket.css" />
+    <script src="auth.js"></script>
+    <script src="showtix.js"></script>
+    <style>
+      .footer-section h4 { cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;padding:4px 0;transition:color 0.2s; }
+      .footer-section h4:hover { color:#e50914; }
+      .footer-section h4::after { content:'\﹢';font-size:16px;color:#888;flex-shrink:0; }
+      .footer-section.faq-open h4::after { content:'\－';color:#e50914; }
+      .footer-section .faq-body { max-height:0;overflow:hidden;transition:max-height 0.35s ease; }
+      .footer-section.faq-open .faq-body { max-height:500px; }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <div class="book"><a href="home.html"><img src="showtix_logo.svg" alt="SHOWTIX" style="height:45px;width:auto;" /></a></div>
+      <div class="search">
+        <div class="search_icon"><a href="#" aria-label="Search"><i class="fa fa-search"></i></a></div>
+        <div class="input"><input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities" /></div>
+      </div>
+      <div class="city"><a href="#">Delhi</a></div>
+      <div class="sign" id="authNav"><a href="sign.html">Sign In</a></div>
+      <div id="mySidenav" class="sidenav"></div>
+      <div class="side-menu">&#9776;</div>
+    </div>
+
+    <div class="menu_list">
+      <div class="movies"><a href="movies.html">Movies</a></div>
+      <div class="Stream"><a href="stream.html">Stream</a></div>
+      <div class="Events"><a href="event.html">Events</a></div>
+      <div class="Plays"><a href="plays.html">Plays</a></div>
+      <div class="Activities"><a href="activity.html">Activities</a></div>
+      <div class="show1"><a href="card.html">Gift Cards</a></div>
+    </div>
+
+    <div class="movie-hero">
+      <h1>Sunny Sanskari Ki Tulsi Kumari</h1>
+      <div class="movie-meta"><span class="meta-pill rating">UA13+</span><span class="meta-pill">Hindi</span><span class="meta-pill">2h 10m</span><span class="meta-pill">Comedy</span><span class="meta-pill">Romantic</span></div>
+    </div>
+
+    <div class="booking-header">
+      <div>
+        <div class="booking-title">Now Showing &#8212; Hindi 2D</div>
+        <div class="booking-sub">Select date and showtime</div>
+      </div>
+      <div class="date-selector">
+        <div class="date active"><span class="day">Sat</span><span class="num">25</span></div>
+        <div class="date"><span class="day">Sun</span><span class="num">26</span></div>
+        <div class="date"><span class="day">Mon</span><span class="num">27</span></div>
+        <div class="date"><span class="day">Tue</span><span class="num">28</span></div>
+        <div class="date"><span class="day">Wed</span><span class="num">29</span></div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#4ade80;border-radius:2px;"></div> Available</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fbbf24;border-radius:2px;"></div> Fast Filling</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#333;border-radius:2px;"></div> Sold Out</div>
+    </div>
+
+    <div class="theatre-list">
+      <div class="theatre">
+        <div class="theatre-name">Liberty Cinema &#8212; Karol Bagh</div>
+        <div class="theatre-info">M-Ticket Available &nbsp;&middot;&nbsp; Cancellable</div>
+        <div class="showtimes">
+          <div class="time available">09:45 AM<span class="time-badge">Available</span></div>
+          <div class="time">12:30 PM</div>
+          <div class="time fastfilling">06:30 PM<span class="time-badge">Fast Filling</span></div>
+        </div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-name">Shalimar Bagh</div>
+        <div class="theatre-info">M-Ticket Available</div>
+        <div class="showtimes">
+          <div class="time available">09:45 AM<span class="time-badge">Available</span></div>
+          <div class="time">12:30 PM</div>
+          <div class="time fastfilling">03:30 PM<span class="time-badge">Fast Filling</span></div>
+          <div class="time fastfilling">06:30 PM<span class="time-badge">Fast Filling</span></div>
+        </div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-name">Cinepolis Cross River Mall &#8212; Shahdara</div>
+        <div class="theatre-info">M-Ticket Available &nbsp;&middot;&nbsp; Cancellable</div>
+        <div class="showtimes">
+          <div class="time available">09:10 AM<span class="time-badge">Available</span></div>
+          <div class="time">12:05 PM</div>
+          <div class="time fastfilling">03:10 PM<span class="time-badge">Fast Filling</span></div>
+          <div class="time fastfilling">06:30 PM<span class="time-badge">Fast Filling</span></div>
+        </div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-name">Gagan Theatre &#8212; New Delhi</div>
+        <div class="theatre-info">Cancellable</div>
+        <div class="showtimes">
+          <div class="time">09:30 AM</div>
+          <div class="time">12:30 PM</div>
+          <div class="time available">03:30 PM<span class="time-badge">Available</span></div>
+          <div class="time">06:30 PM</div>
+        </div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-name">Cinepolis Unity One Mall &#8212; Rohini</div>
+        <div class="theatre-info">M-Ticket Available &nbsp;&middot;&nbsp; Cancellable</div>
+        <div class="showtimes">
+          <div class="time">09:30 AM</div>
+          <div class="time">12:30 PM</div>
+          <div class="time available">03:30 PM<span class="time-badge">Available</span></div>
+          <div class="time">06:30 PM</div>
+          <div class="time">09:30 PM</div>
+        </div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-name">Patel Nagar Cinema</div>
+        <div class="theatre-info">Cancellable</div>
+        <div class="showtimes">
+          <div class="time">01:30 PM</div>
+          <div class="time">03:30 PM</div>
+          <div class="time available">05:30 PM<span class="time-badge">Available</span></div>
+          <div class="time fastfilling">08:30 PM<span class="time-badge">Fast Filling</span></div>
+          <div class="time">10:30 PM</div>
+          <div class="time housefull">11:30 PM<span class="time-badge">Housefull</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successOverlay">
+      <div id="successBox">
+        <div class="success-top">
+          <span class="success-icon">&#127881;</span>
+          <div class="success-title">Booking Confirmed!</div>
+          <div class="success-sub">Your tickets are ready. Enjoy the show!</div>
+        </div>
+        <div class="ticket-tear"><div class="ticket-tear-line"></div></div>
+        <div class="success-body">
+          <div class="success-details">
+            <div class="success-row"><span class="label">Movie</span><span class="value">Sunny Sanskari Ki Tulsi Kumari</span></div>
+            <div class="success-row"><span class="label">Theatre &amp; Show</span><span class="value" id="sTheatreTime">&#8212;</span></div>
+            <div class="success-row"><span class="label">Payment</span><span class="value" id="sPayMethod">&#8212;</span></div>
+            <div class="success-row">
+              <span class="label">Seats</span>
+              <div class="success-seat-chips" id="sSeatChips"></div>
+            </div>
+            <div class="success-row"><span class="label">Total Paid</span><span class="value green" id="sTotal">&#8377;0</span></div>
+          </div>
+          <div class="success-qr-row">
+            <div class="success-qr"></div>
+            <div class="success-id-block">
+              <div class="success-id-label">Booking ID</div>
+              <div class="success-id" id="sBookingId">&#8212;</div>
+            </div>
+          </div>
+          <div class="success-actions">
+            <button class="btn-home" id="sGoHome">&#127968; Home</button>
+            <button class="btn-download" id="sDone">&#10003; Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seat Selection Modal -->
+    <div class="modal" id="seatModal">
+      <div class="modal-content">
+        <div class="modal-handle"></div>
+        <div class="modal-title">Select Seats</div>
+        <div class="modal-subtitle" id="modalSubtitle">Choose your seats below</div>
+        <div class="price-filters">
+          <button class="price-btn active" data-range="all">All Prices</button>
+          <button class="price-btn" data-range="0-500">&#8377;0&#8211;500</button>
+          <button class="price-btn" data-range="501-1000">&#8377;501&#8211;1000</button>
+          <button class="price-btn" data-range="1001-2000">&#8377;1001&#8211;2000</button>
+        </div>
+        <div class="screen-bar"><span>Screen this way</span></div>
+        <div class="seats" id="seatContainer"></div>
+        <div class="seat-legend">
+          <div class="seat-legend-item"><div class="seat-legend-dot" style="background:#2a2a2a;border:1px solid rgba(255,255,255,0.1);"></div> Available</div>
+          <div class="seat-legend-item"><div class="seat-legend-dot" style="background:#22c55e;"></div> Selected</div>
+          <div class="seat-legend-item"><div class="seat-legend-dot" style="background:#1a1a1a;opacity:0.4;"></div> Booked</div>
+          <div class="seat-legend-item"><div class="seat-legend-dot" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);"></div> Premium</div>
+        </div>
+        <div class="summary-bar">
+          <div class="seats-info" id="seatsInfo">No seats selected</div>
+          <div class="total" id="totalAmount">&#8377;0</div>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn-cancel" id="closeModal">Cancel</button>
+          <button class="btn-confirm" id="proceedToPayment">Proceed to Pay &#8594;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+      <div class="modal-content payment-modal-content">
+        <div class="modal-handle"></div>
+        <div class="modal-title">Payment</div>
+        <div class="modal-subtitle">Choose your preferred payment method</div>
+        <div class="payment-summary">
+          <span id="pSeatInfo">0 seats</span>
+          <span class="dot">&nbsp;&middot;&nbsp;</span>
+          <span class="pay-total" id="pTotal">&#8377;0</span>
+        </div>
+        <div class="pay-section">
+          <div class="pay-section-title">UPI</div>
+          <label class="pay-option"><input type="radio" name="payment" value="Google Pay"><span class="pay-icon">&#127981;</span><span class="pay-label">Google Pay<small>Pay via UPI using GPay</small></span></label>
+          <label class="pay-option"><input type="radio" name="payment" value="PhonePe"><span class="pay-icon">&#128241;</span><span class="pay-label">PhonePe<small>Pay via UPI using PhonePe</small></span></label>
+          <label class="pay-option"><input type="radio" name="payment" value="Paytm"><span class="pay-icon">&#128178;</span><span class="pay-label">Paytm<small>Pay via UPI using Paytm</small></span></label>
+          <label class="pay-option"><input type="radio" name="payment" value="UPI ID"><span class="pay-icon">&#128242;</span><span class="pay-label">Other UPI ID<small>Enter any UPI ID</small></span></label>
+        </div>
+        <div class="pay-section">
+          <div class="pay-section-title">Cards</div>
+          <label class="pay-option"><input type="radio" name="payment" value="Credit Card"><span class="pay-icon">&#128179;</span><span class="pay-label">Credit Card<small>Visa, Mastercard, Amex, RuPay</small></span></label>
+          <label class="pay-option"><input type="radio" name="payment" value="Debit Card"><span class="pay-icon">&#128179;</span><span class="pay-label">Debit Card<small>All major bank cards accepted</small></span></label>
+        </div>
+        <div class="pay-section">
+          <div class="pay-section-title">Other Methods</div>
+          <label class="pay-option"><input type="radio" name="payment" value="Net Banking"><span class="pay-icon">&#127970;</span><span class="pay-label">Net Banking<small>All major Indian banks</small></span></label>
+          <label class="pay-option"><input type="radio" name="payment" value="Wallet / Gift Card"><span class="pay-icon">&#128128;</span><span class="pay-label">Wallet / Gift Card<small>SHOWTIX wallet or gift card</small></span></label>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn-cancel" id="backToSeats">&#8592; Back</button>
+          <button class="btn-confirm" id="payNow">Pay &#8377;0</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+    (function() {
+      var MOVIE_NAME = 'Sunny Sanskari Ki Tulsi Kumari';
+      var seatModal     = document.getElementById('seatModal');
+      var paymentModal  = document.getElementById('paymentModal');
+      var successOverlay= document.getElementById('successOverlay');
+      var seatCont      = document.getElementById('seatContainer');
+      var seatsInfo     = document.getElementById('seatsInfo');
+      var totalEl       = document.getElementById('totalAmount');
+      var subtitle      = document.getElementById('modalSubtitle');
+      var pSeatInfo     = document.getElementById('pSeatInfo');
+      var pTotal        = document.getElementById('pTotal');
+      var payNowBtn     = document.getElementById('payNow');
+      var seatData      = [];
+      var activeRange   = 'all';
+      var currentTheatreTime = '';
+
+      // Date selection
+      document.querySelectorAll('.date').forEach(function(d) {
+        d.addEventListener('click', function() {
+          document.querySelectorAll('.date').forEach(function(x) { x.classList.remove('active'); });
+          d.classList.add('active');
+        });
+      });
+
+      // Open seat modal on showtime click
+      document.querySelectorAll('.time:not(.housefull)').forEach(function(t) {
+        t.addEventListener('click', function() {
+          var theatre = t.closest('.theatre').querySelector('.theatre-name').textContent;
+          var time    = t.childNodes[0].textContent.trim();
+          currentTheatreTime = theatre + ' · ' + time;
+          subtitle.textContent = currentTheatreTime;
+          seatModal.classList.add('open');
+          generateSeats();
+        });
+      });
+
+      // Price filter
+      document.querySelectorAll('.price-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.price-btn').forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeRange = btn.dataset.range;
+          renderSeats();
+        });
+      });
+
+      function generateSeats() {
+        seatData = [];
+        for (var i = 1; i <= 50; i++) {
+          var price   = i <= 10 ? 400 : i <= 30 ? 800 : 1500;
+          var premium = price === 1500;
+          var booked  = Math.random() < 0.18;
+          seatData.push({ id: i, price: price, premium: premium, booked: booked, selected: false });
+        }
+        activeRange = 'all';
+        document.querySelectorAll('.price-btn').forEach(function(b) {
+          b.classList.toggle('active', b.dataset.range === 'all');
+        });
+        renderSeats();
+      }
+
+      function renderSeats() {
+        seatCont.innerHTML = '';
+        var filtered = seatData.filter(function(s) {
+          if (activeRange === 'all')       return true;
+          if (activeRange === '0-500')     return s.price <= 500;
+          if (activeRange === '501-1000')  return s.price > 500 && s.price <= 1000;
+          if (activeRange === '1001-2000') return s.price > 1000;
+          return true;
+        });
+        filtered.forEach(function(seat) {
+          var div = document.createElement('div');
+          div.className = 'seat';
+          if (seat.premium) div.classList.add('premium');
+          if (seat.booked)  div.classList.add('booked');
+          if (seat.selected) div.classList.add('selected');
+          div.title = 'Seat ' + seat.id + ' — ₹' + seat.price;
+          var numSpan = document.createElement('span');
+          numSpan.className = 'seat-num';
+          numSpan.textContent = seat.id;
+          div.appendChild(numSpan);
+          div.addEventListener('click', function() {
+            if (seat.booked) return;
+            seat.selected = !seat.selected;
+            div.classList.toggle('selected', seat.selected);
+            updateSummary();
+          });
+          seatCont.appendChild(div);
+        });
+        updateSummary();
+      }
+
+      function updateSummary() {
+        var selected = seatData.filter(function(s) { return s.selected; });
+        var total    = selected.reduce(function(sum, x) { return sum + x.price; }, 0);
+        seatsInfo.textContent = selected.length
+          ? selected.length + ' seat' + (selected.length > 1 ? 's' : '') + ' selected'
+          : 'No seats selected';
+        totalEl.textContent = '₹' + total.toLocaleString('en-IN');
+      }
+
+      // Close seat modal
+      document.getElementById('closeModal').addEventListener('click', function() {
+        seatModal.classList.remove('open');
+      });
+      seatModal.addEventListener('click', function(e) {
+        if (e.target === seatModal) seatModal.classList.remove('open');
+      });
+
+      // Proceed to payment
+      document.getElementById('proceedToPayment').addEventListener('click', function() {
+        var selected = seatData.filter(function(s) { return s.selected; });
+        if (!selected.length) {
+          seatsInfo.style.color = '#e50914';
+          seatsInfo.textContent = '⚠ Please select at least one seat';
+          setTimeout(function() { seatsInfo.style.color = ''; updateSummary(); }, 2000);
+          return;
+        }
+        var total = selected.reduce(function(sum, x) { return sum + x.price; }, 0);
+        pSeatInfo.textContent = selected.length + ' seat' + (selected.length > 1 ? 's' : '');
+        pTotal.textContent = '₹' + total.toLocaleString('en-IN');
+        payNowBtn.textContent = 'Pay ₹' + total.toLocaleString('en-IN');
+        document.querySelectorAll('input[name="payment"]').forEach(function(r) { r.checked = false; });
+        seatModal.classList.remove('open');
+        paymentModal.classList.add('open');
+      });
+
+      // Back to seats
+      document.getElementById('backToSeats').addEventListener('click', function() {
+        paymentModal.classList.remove('open');
+        seatModal.classList.add('open');
+      });
+      paymentModal.addEventListener('click', function(e) {
+        if (e.target === paymentModal) paymentModal.classList.remove('open');
+      });
+
+      // Pay now
+      payNowBtn.addEventListener('click', function() {
+        var chosen = document.querySelector('input[name="payment"]:checked');
+        if (!chosen) {
+          var sub = paymentModal.querySelector('.modal-subtitle');
+          var orig = sub.textContent;
+          sub.style.color = '#e50914';
+          sub.textContent = '⚠ Please choose a payment method';
+          setTimeout(function() { sub.style.color = ''; sub.textContent = orig; }, 2200);
+          return;
+        }
+        payNowBtn.disabled = true;
+        payNowBtn.innerHTML = '<span class="paying-spinner"></span> Processing...';
+        setTimeout(function() {
+          var selected = seatData.filter(function(s) { return s.selected; });
+          var total    = selected.reduce(function(sum, x) { return sum + x.price; }, 0);
+          var bookingId = 'STX' + Date.now().toString().slice(-8).toUpperCase();
+          var seatLabels = selected.map(function(s) { return 'S' + s.id; });
+          var totalStr   = '₹' + total.toLocaleString('en-IN');
+
+          // Save booking to localStorage (picked up by sidenav My Bookings)
+          if (window.stxSaveBooking) {
+            window.stxSaveBooking({
+              movie:     MOVIE_NAME,
+              theatre:   currentTheatreTime,
+              seats:     seatLabels,
+              payment:   chosen.value,
+              total:     totalStr,
+              bookingId: bookingId
+            });
+          }
+
+          // Populate success box
+          document.getElementById('sTheatreTime').textContent = currentTheatreTime;
+          document.getElementById('sPayMethod').textContent   = chosen.value;
+          document.getElementById('sTotal').textContent       = totalStr;
+          document.getElementById('sBookingId').textContent = bookingId;
+          var chipsEl = document.getElementById('sSeatChips');
+          chipsEl.innerHTML = '';
+          seatLabels.forEach(function(label) {
+            var chip = document.createElement('span');
+            chip.className = 'seat-chip';
+            chip.textContent = label;
+            chipsEl.appendChild(chip);
+          });
+
+          paymentModal.classList.remove('open');
+          document.body.style.overflow = 'hidden';
+          successOverlay.classList.add('show');
+          payNowBtn.disabled = false;
+          payNowBtn.textContent = 'Pay';
+
+          // Show toast
+          if (window.stxShowToast) window.stxShowToast('✓ Booking saved! Check My Bookings in the menu.', 4000);
+        }, 1200);
+      });
+
+      // Success actions
+      document.getElementById('sDone').addEventListener('click', function() {
+        successOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+      document.getElementById('sGoHome').addEventListener('click', function() {
+        window.location.href = 'home.html';
+      });
+    })();
+
+    </script>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-top-left"><p>&#127917; <b>List your Show</b> &nbsp;&nbsp; Partner with us &amp; get listed on SHOWTIX</p></div>
+        <a href="contact.html"><button class="contact-btn">Contact today!</button></a>
+      </div>
+      <div class="footer-icons">
+        <div><img src="customer.png" alt="customer_care" /><p>24/7 CUSTOMER CARE</p></div>
+        <div><img src="ticket.png" alt="ticket_icon" /><p>RESEND BOOKING CONFIRMATION</p></div>
+        <div><img src="email.png" alt="email_icon" /><p>SUBSCRIBE TO NEWSLETTER</p></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section"><h4>UPCOMING MOVIES IN DELHI</h4><div class="faq-body"><p><a href="movies.html">Wari Loidri</a> | <a href="movies.html">Chaniya Toli</a> | <a href="movies.html">Premachi Goshta 2</a></p></div></div>
+        <div class="footer-section"><h4>MOVIES BY GENRE</h4><div class="faq-body"><p><a href="movies.html">Drama</a> | <a href="movies.html">Comedy</a> | <a href="movies.html">Action</a> | <a href="movies.html">Romantic</a></p></div></div>
+        <div class="footer-section"><h4>EVENTS IN TOP CITIES</h4><div class="faq-body"><p><a href="event.html">Mumbai</a> | <a href="event.html">Delhi-NCR</a> | <a href="event.html">Chennai</a></p></div></div>
+        <div class="show_logo"><img src="showtix_logo.svg" alt="SHOWTIX" /></div>
+        <div class="app">
+          <a href="https://www.facebook.com"><img src="facebook.png" alt="facebook" /></a>
+          <a href="https://www.youtube.com"><img src="youtube.png" alt="youtube" /></a>
+          <a href="https://www.instagram.com"><img src="instagram.png" alt="instagram" /></a>
+          <a href="https://x.com/"><img src="twitter.png" alt="twitter" /></a>
+          <a href="https://in.linkedin.com"><img src="in.png" alt="linkedin" /></a>
+        </div>
+        <div class="copyright">&#169; 2025 SHOWTIX. All rights reserved.</div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.footer-section h4').forEach(function(h4) {
+          h4.addEventListener('click', function() { h4.closest('.footer-section').classList.toggle('faq-open'); });
+        });
+      });
+    </script>
+  </body>
+</html>
