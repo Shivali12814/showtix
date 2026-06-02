@@ -215,14 +215,19 @@ body {
 .modal {
   display: none;
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
+  top: 0; left: 0; right: 0; bottom: 0; /* Android fallback for inset:0 */
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.88);
   justify-content: center;
   align-items: flex-end;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
+  z-index: 2000;
+  -webkit-tap-highlight-color: transparent;
 }
-.modal.open { display: flex; }
+.modal.open {
+  display: -webkit-flex;
+  display: flex;
+}
 
 .modal-content {
   background: #141414;
@@ -232,9 +237,20 @@ body {
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
-  max-height: 90vh;
+  max-height: 85vh;
+  max-height: 85dvh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  -webkit-animation: slideUp 0.3s ease;
   animation: slideUp 0.3s ease;
+  position: relative;
+  z-index: 2001;
+  padding-bottom: max(32px, env(safe-area-inset-bottom, 32px));
+}
+@-webkit-keyframes slideUp {
+  from { -webkit-transform: translateY(100%); }
+  to   { -webkit-transform: translateY(0); }
 }
 @keyframes slideUp {
   from { transform: translateY(100%); }
@@ -361,16 +377,36 @@ body {
 #successOverlay {
   display: none;
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 3000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.93);
+  z-index: 4000;
+  -webkit-justify-content: center;
   justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(8px);
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
   overflow-y: auto;
-  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
-#successOverlay.show { display: flex; }
+#successOverlay.show {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Prevent background scroll on Android when overlays open */
+body.stx-locked {
+  overflow: hidden;
+  touch-action: none;
+  -webkit-overflow-scrolling: auto;
+}
+.modal.open, #successOverlay.show {
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* Confetti particles */
 #successOverlay.show::after {
@@ -390,13 +426,16 @@ body {
 #successBox {
   background: #111;
   border-radius: 20px;
-  width: 90%;
+  width: 100%;
   max-width: 420px;
   text-align: center;
+  -webkit-animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
   animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
   position: relative;
   overflow: visible;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
+  margin: auto;
+  flex-shrink: 0;
 }
 @keyframes ticketDrop {
   0%   { transform: scale(0.5) translateY(-60px); opacity: 0; }
@@ -465,8 +504,8 @@ body {
   flex-shrink: 0;
   position: absolute;
 }
-.ticket-tear::before { left: -12px; }
-.ticket-tear::after  { right: -12px; }
+.ticket-tear::before { left: -14px; }
+.ticket-tear::after  { right: -14px; }
 .ticket-tear-line {
   flex: 1;
   border-top: 2px dashed rgba(255,255,255,0.12);
@@ -780,7 +819,7 @@ body {
   .time { padding: 7px 10px; font-size: 11px; }
   .showtimes { gap: 7px; }
   .seats { grid-template-columns: repeat(6, 1fr); gap: 4px; }
-  .seat { max-width: 38px; }
+  .seat { max-width: 40px; }
   .theatre { padding: 12px 14px; }
   .theatre-name { font-size: 13px; }
   .summary-bar { flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -788,13 +827,27 @@ body {
   .btn-cancel, .btn-confirm { flex: unset; width: 100%; }
   .booking-title { font-size: 13px; }
   .payment-summary { flex-wrap: wrap; gap: 6px; }
-  #successBox { width: 95%; }
-  .success-top { padding: 20px 20px 18px; }
-  .success-body { padding: 16px 18px 20px; }
-  .success-title { font-size: 24px; }
-  .success-row { font-size: 12px; }
-  .success-actions { flex-direction: column; }
-  .btn-home, .btn-download { flex: unset; width: 100%; }
+  .modal-content { padding: 20px 14px; padding-bottom: max(24px, env(safe-area-inset-bottom, 24px)); }
+
+  /* Success box on mobile */
+  #successOverlay { padding: 16px 12px; }
+  #successBox { width: 100%; max-width: 100%; }
+  .success-top { padding: 20px 18px 16px; }
+  .success-body { padding: 14px 16px 18px; }
+  .success-title { font-size: 22px; }
+  .success-icon { font-size: 38px; }
+  .success-row { font-size: 12px; padding: 7px 0; }
+  .success-row .value { font-size: 12px; }
+  .success-row .value.green { font-size: 18px; }
+  .success-qr-row { padding: 10px 12px; gap: 10px; }
+  .success-qr { width: 44px; height: 44px; }
+  .success-id { font-size: 11px; }
+  .success-actions { flex-direction: column; gap: 8px; }
+  .btn-home, .btn-download { flex: unset; width: 100%; padding: 13px; }
+
+  /* Ticket tear notches - keep visible */
+  .ticket-tear::before { left: -13px; }
+  .ticket-tear::after  { right: -13px; }
 }
 
 @media (max-width: 360px) {
@@ -802,4 +855,5 @@ body {
   .seat { max-width: 44px; }
   .date { min-width: 40px; padding: 6px 7px; }
   .time { padding: 6px 9px; font-size: 11px; }
+  .modal-content { padding: 16px 12px; }
 }
