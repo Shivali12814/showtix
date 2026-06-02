@@ -416,15 +416,20 @@ body {
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.93);
   z-index: 9999;
-  /* GPU layer on Android */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: opacity;
+  /* Flexbox centering — works on all devices */
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  /* NO transform here — transform creates a containing block
+     that breaks position:fixed on children */
 }
 #successOverlay.show {
-  display: block;
-  visibility: visible;
-  opacity: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
 
 /* Prevent background scroll on Android when overlays open */
@@ -459,20 +464,17 @@ body.stx-locked {
   border-radius: 20px;
   width: calc(100% - 32px);
   max-width: 420px;
-  text-align: center;
-  -webkit-animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-  animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-  /* Always centered — works on all Android/iOS/desktop */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  /* Let flexbox parent handle centering */
+  position: relative;
+  flex-shrink: 0;
   max-height: 88vh;
   max-height: 88dvh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
+  text-align: center;
+  -webkit-animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
   box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
   z-index: 10000;
 }
@@ -939,7 +941,7 @@ body.stx-locked {
   .price-btn { padding: 5px 10px; font-size: 11px; }
 
   /* Success overlay */
-  #successBox { width: calc(100% - 24px); max-width: 400px; border-radius: 16px; }
+  #successBox { width: calc(100% - 24px); max-width: 400px; border-radius: 16px; max-height: 85vh; max-height: 85dvh; }
   .success-top { padding: 20px 16px 16px; border-radius: 16px 16px 0 0; }
   .success-body { padding: 14px 16px 16px; border-radius: 0 0 16px 16px; }
   .success-title { font-size: 22px; letter-spacing: 2px; }
@@ -968,5 +970,5 @@ body.stx-locked {
   .time { padding: 6px 8px; font-size: 10px; }
   .pay-option { padding: 9px 10px; }
   .pay-icon { font-size: 16px; width: 24px; }
-  #successBox { width: calc(100% - 16px); max-width: 360px; }
+  #successBox { width: calc(100% - 16px); max-width: 360px; max-height: 82vh; }
 }
