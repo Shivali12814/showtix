@@ -939,8 +939,7 @@ body.stx-locked {
   .price-btn { padding: 5px 10px; font-size: 11px; }
 
   /* Success overlay */
-  #successOverlay { padding: 14px 10px; }
-  #successBox { width: 100%; max-width: 100%; border-radius: 16px; }
+  #successBox { width: calc(100% - 24px); max-width: 400px; border-radius: 16px; }
   .success-top { padding: 20px 16px 16px; border-radius: 16px 16px 0 0; }
   .success-body { padding: 14px 16px 16px; border-radius: 0 0 16px 16px; }
   .success-title { font-size: 22px; letter-spacing: 2px; }
@@ -969,5 +968,5 @@ body.stx-locked {
   .time { padding: 6px 8px; font-size: 10px; }
   .pay-option { padding: 9px 10px; }
   .pay-icon { font-size: 16px; width: 24px; }
-  #successOverlay { padding: 10px 8px; }
+  #successBox { width: calc(100% - 16px); max-width: 360px; }
 }
