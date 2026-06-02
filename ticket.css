@@ -413,12 +413,13 @@ body {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.93);
-  z-index: 4000;
+  z-index: 9999;
+  -webkit-box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+  -webkit-box-align: start;
   -webkit-align-items: flex-start;
   align-items: flex-start;
   overflow-y: auto;
@@ -426,10 +427,17 @@ body {
   overscroll-behavior: contain;
   padding: 24px 16px;
   box-sizing: border-box;
+  /* Force GPU layer on Android */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: opacity;
 }
 #successOverlay.show {
+  display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Prevent background scroll on Android when overlays open */

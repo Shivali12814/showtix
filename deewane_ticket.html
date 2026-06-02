@@ -416,7 +416,7 @@
           });
 
           paymentModal.classList.remove('open');
-          document.body.style.overflow = 'hidden';
+          
           successOverlay.classList.add('show');
           payNowBtn.disabled = false;
           payNowBtn.textContent = 'Pay';
@@ -429,7 +429,7 @@
       // Success actions
       document.getElementById('sDone').addEventListener('click', function() {
         successOverlay.classList.remove('show');
-        document.body.style.overflow = '';
+        
       });
       document.getElementById('sGoHome').addEventListener('click', function() {
         window.location.href = 'home.html';
