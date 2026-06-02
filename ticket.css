@@ -752,24 +752,39 @@ body.stx-locked {
 
 /* ── Payment Modal ── */
 .payment-modal-content {
-  max-height: 88vh;
+  max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Summary pill at top */
 .payment-summary {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 12px 14px;
   background: rgba(229,9,20,0.08);
-  border: 1px solid rgba(229,9,20,0.18);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #ccc;
+  border: 1px solid rgba(229,9,20,0.2);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: #bbb;
+  font-family: 'Poppins', sans-serif;
 }
 .payment-summary .dot { color: #444; }
-.payment-summary .pay-total { color: #e50914; font-weight: 700; font-size: 18px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; margin-left: auto; }
-.pay-section { margin-bottom: 18px; }
+.payment-summary .pay-total {
+  color: #e50914;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+
+/* Section label */
+.pay-section { margin-bottom: 14px; }
 .pay-section-title {
   font-size: 10px;
   font-weight: 700;
@@ -778,46 +793,76 @@ body.stx-locked {
   text-transform: uppercase;
   margin-bottom: 8px;
   padding: 0 2px;
+  font-family: 'Poppins', sans-serif;
 }
+
+/* Each payment row */
 .pay-option {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 13px 14px;
-  border-radius: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.07);
   background: #1c1c1c;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   color: #ccc;
-  transition: all 0.2s;
+  transition: border-color 0.18s, background 0.18s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
-.pay-option:hover { border-color: rgba(229,9,20,0.35); background: #222; }
+.pay-option:active,
+.pay-option:hover { border-color: rgba(229,9,20,0.4); background: #222; }
+
 .pay-option input[type="radio"] {
   accent-color: #e50914;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
   cursor: pointer;
 }
 .pay-option:has(input:checked) {
   border-color: #e50914;
-  background: rgba(229,9,20,0.08);
+  background: rgba(229,9,20,0.09);
   color: #fff;
 }
+
 .pay-logo {
-  width: 34px;
-  height: 22px;
+  width: 36px;
+  height: 24px;
   object-fit: contain;
   border-radius: 4px;
   background: #fff;
-  padding: 2px;
+  padding: 3px;
+  flex-shrink: 0;
 }
-.pay-icon { font-size: 20px; width: 34px; text-align: center; flex-shrink: 0; }
-.pay-label { flex: 1; font-family: 'Poppins', sans-serif; }
-.pay-label small { display: block; font-size: 11px; color: #666; margin-top: 2px; }
-.pay-option:has(input:checked) .pay-label small { color: rgba(255,255,255,0.4); }
+.pay-icon {
+  font-size: 22px;
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.pay-label {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 0;
+}
+.pay-label small {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pay-option:has(input:checked) .pay-label small { color: rgba(255,255,255,0.35); }
 
 /* Processing spinner */
 .paying-spinner {
@@ -839,56 +884,83 @@ body.stx-locked {
   .booking-header { padding: 16px 4%; flex-direction: column; gap: 12px; }
   .theatre-list { padding: 12px 4% 24px; }
   .legend { padding: 0 4% 12px; gap: 12px; }
-  .seats { grid-template-columns: repeat(8, 1fr); gap: 5px; }
-  .modal-content { padding: 20px 16px 28px; max-height: 92vh; }
-  .date-selector { gap: 6px; }
+  .seats { grid-template-columns: repeat(8, 1fr); gap: 6px 5px; }
+  .modal { padding: 14px; }
+  .modal-content { padding: 20px 16px 24px; }
+  .date-selector { gap: 6px; flex-wrap: wrap; }
+  .pay-option { padding: 11px 12px; gap: 10px; }
+  .pay-label { font-size: 13px; }
+  .pay-label small { font-size: 10px; }
 }
 
 @media (max-width: 480px) {
+  /* Page elements */
+  .booking-title { font-size: 13px; }
   .date { padding: 7px 8px; min-width: 44px; }
   .date .num { font-size: 17px; }
   .date .day { font-size: 10px; }
   .time { padding: 7px 10px; font-size: 11px; }
   .showtimes { gap: 7px; }
+  .theatre { padding: 12px 14px; }
+  .theatre-name { font-size: 13px; }
+
+  /* Modal wrapper */
+  .modal { padding: 10px; }
+  .modal-content { padding: 18px 14px 20px; border-radius: 16px; }
+
+  /* Seats */
   .seats { grid-template-columns: repeat(7, 1fr); gap: 5px 4px; }
   .seat { max-width: 38px; }
   .seat-num { font-size: 6px; }
-  .theatre { padding: 12px 14px; }
-  .theatre-name { font-size: 13px; }
-  .summary-bar { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .modal-buttons { flex-direction: column; }
-  .btn-cancel, .btn-confirm { flex: unset; width: 100%; }
-  .booking-title { font-size: 13px; }
-  .payment-summary { flex-wrap: wrap; gap: 6px; }
-  .modal-content { padding: 20px 14px 24px; }
+  .screen-bar { margin-bottom: 14px; }
 
-  /* Success box on mobile */
-  #successOverlay { padding: 16px 12px; }
-  #successBox { width: 100%; max-width: 100%; }
-  .success-top { padding: 20px 18px 16px; }
-  .success-body { padding: 14px 16px 18px; }
-  .success-title { font-size: 22px; }
-  .success-icon { font-size: 38px; }
+  /* Summary + buttons */
+  .summary-bar { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .modal-buttons { flex-direction: column; gap: 8px; }
+  .btn-cancel, .btn-confirm { flex: unset; width: 100%; padding: 13px; font-size: 14px; }
+
+  /* Payment */
+  .payment-summary { font-size: 12px; }
+  .payment-summary .pay-total { font-size: 18px; }
+  .pay-option { padding: 10px 12px; gap: 9px; font-size: 13px; }
+  .pay-icon { font-size: 18px; width: 28px; }
+  .pay-logo { width: 30px; height: 20px; }
+  .pay-label { font-size: 12px; }
+  .pay-label small { font-size: 10px; }
+  .pay-section-title { font-size: 9px; letter-spacing: 1.5px; }
+  .price-filters { gap: 6px; }
+  .price-btn { padding: 5px 10px; font-size: 11px; }
+
+  /* Success overlay */
+  #successOverlay { padding: 14px 10px; }
+  #successBox { width: 100%; max-width: 100%; border-radius: 16px; }
+  .success-top { padding: 20px 16px 16px; border-radius: 16px 16px 0 0; }
+  .success-body { padding: 14px 16px 16px; border-radius: 0 0 16px 16px; }
+  .success-title { font-size: 22px; letter-spacing: 2px; }
+  .success-icon { font-size: 36px; }
   .success-row { font-size: 12px; padding: 7px 0; }
+  .success-row .label { font-size: 10px; }
   .success-row .value { font-size: 12px; }
   .success-row .value.green { font-size: 18px; }
   .success-qr-row { padding: 10px 12px; gap: 10px; }
   .success-qr { width: 44px; height: 44px; }
-  .success-id { font-size: 11px; }
+  .success-id { font-size: 11px; letter-spacing: 1px; }
+  .success-id-label { font-size: 8px; }
   .success-actions { flex-direction: column; gap: 8px; }
-  .btn-home, .btn-download { flex: unset; width: 100%; padding: 13px; }
-
-  /* Ticket tear notches - keep visible */
+  .btn-home, .btn-download { flex: unset; width: 100%; padding: 13px; font-size: 13px; }
   .ticket-tear::before { left: -13px; }
   .ticket-tear::after  { right: -13px; }
 }
 
 @media (max-width: 360px) {
+  .modal { padding: 8px; }
+  .modal-content { padding: 14px 12px 18px; }
   .seats { grid-template-columns: repeat(6, 1fr); gap: 4px 3px; }
   .seat { max-width: 40px; }
-  .seat-num { font-size: 6px; }
-  .date { min-width: 40px; padding: 6px 7px; }
-  .time { padding: 6px 9px; font-size: 11px; }
-  .modal-content { padding: 16px 12px; }
-  .modal { padding: 10px; }
+  .seat-num { font-size: 5px; }
+  .date { min-width: 38px; padding: 6px 6px; }
+  .time { padding: 6px 8px; font-size: 10px; }
+  .pay-option { padding: 9px 10px; }
+  .pay-icon { font-size: 16px; width: 24px; }
+  #successOverlay { padding: 10px 8px; }
 }
