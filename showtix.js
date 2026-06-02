@@ -26,38 +26,48 @@
     btn.id = 'stxBackBtn';
     btn.innerHTML = '&#8592; Back';
     btn.onclick = function () { window.history.back(); };
+
+    var isMobile = window.innerWidth <= 768;
+    // On mobile, navbar is 56px + subnav 42px = 98px total
+    var topOffset = isMobile ? '62px' : '80px';
     btn.style.cssText = [
       'position:fixed',
-      'top:72px',
-      'left:16px',
+      'top:' + topOffset,
+      'left:' + (isMobile ? '10px' : '16px'),
       'z-index:900',
       'display:flex',
       'align-items:center',
-      'gap:6px',
-      'background:rgba(20,20,20,0.88)',
-      'border:1px solid rgba(255,255,255,0.12)',
-      'color:#fff',
+      'gap:4px',
+      'background:rgba(13,13,13,0.88)',
+      'border:1px solid rgba(255,255,255,0.18)',
+      'color:rgba(255,255,255,0.9)',
       'font-family:Poppins,sans-serif',
-      'font-size:13px',
-      'font-weight:600',
-      'padding:8px 16px',
-      'border-radius:24px',
+      'font-size:' + (isMobile ? '11px' : '13px'),
+      'font-weight:500',
+      'padding:' + (isMobile ? '5px 10px' : '7px 15px'),
+      'border-radius:20px',
       'cursor:pointer',
+      'box-shadow:0 2px 12px rgba(0,0,0,0.5)',
+      'transition:background 0.2s,border-color 0.2s,color 0.2s',
+      'letter-spacing:0.2px',
+      'white-space:nowrap',
       'backdrop-filter:blur(8px)',
-      'box-shadow:0 4px 16px rgba(0,0,0,0.5)',
-      'transition:background 0.2s,border-color 0.2s,transform 0.15s',
-      'letter-spacing:0.3px'
+      '-webkit-backdrop-filter:blur(8px)'
     ].join(';');
-    btn.addEventListener('mouseenter', function () {
-      btn.style.background = '#e50914';
-      btn.style.borderColor = '#e50914';
-      btn.style.transform = 'translateX(-2px)';
-    });
-    btn.addEventListener('mouseleave', function () {
-      btn.style.background = 'rgba(20,20,20,0.88)';
-      btn.style.borderColor = 'rgba(255,255,255,0.12)';
-      btn.style.transform = 'translateX(0)';
-    });
+
+    // Desktop hover only (not mobile — avoids sticky red)
+    if (!('ontouchstart' in window)) {
+      btn.addEventListener('mouseenter', function () {
+        btn.style.background = 'rgba(229,9,20,0.9)';
+        btn.style.borderColor = '#e50914';
+        btn.style.color = '#fff';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.background = 'rgba(13,13,13,0.82)';
+        btn.style.borderColor = 'rgba(255,255,255,0.15)';
+        btn.style.color = 'rgba(255,255,255,0.85)';
+      });
+    }
     document.body.appendChild(btn);
   }
 

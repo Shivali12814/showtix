@@ -1203,9 +1203,15 @@ h1, h2, h3, h4 {
   .prev { left: 8px; }
   .next { right: 8px; }
 
-  /* ── Movie Cards ── */
-  .movies_list { width: 100%; padding: 0 12px; gap: 12px; }
-  .movie { flex: 0 0 calc(50% - 6px); }
+  /* ── Movie Cards — CSS Grid for reliable 2-col on all phones ── */
+  .movies_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    padding: 0 12px;
+    gap: 12px;
+  }
+  .movie { flex: unset; min-width: 0; }
   .movie img { height: 190px; }
   .movie p { font-size: 12px; }
 
@@ -1245,7 +1251,7 @@ h1, h2, h3, h4 {
   .slide-title { font-size: 22px; }
   .slide-content { padding: 0 4% 20px; }
 
-  .movie { flex: 0 0 calc(50% - 6px); }
+  .movie { min-width: 0; }
   .movie img { height: 160px; }
 
   .event { flex: 0 0 calc(50% - 5px); }
