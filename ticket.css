@@ -408,79 +408,49 @@ body {
 .seat.premium.selected::before { background: #22c55e; border-color: #16a34a; }
 .seat.premium.selected::after  { background: #16a34a; border-color: #15803d; }
 
-/* ── Success Ticket Card ── */
+/* ── Success Overlay ── */
 #successOverlay {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.93);
+  background: rgba(0,0,0,0.92);
   z-index: 9999;
-  /* Flexbox centering — works on all devices */
+}
+#successOverlay.show {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  /* NO transform here — transform creates a containing block
-     that breaks position:fixed on children */
-}
-#successOverlay.show {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
 }
 
-/* Prevent background scroll on Android when overlays open */
+/* Prevent background scroll */
 body.stx-locked {
   overflow: hidden;
   touch-action: none;
-  -webkit-overflow-scrolling: auto;
 }
 .modal.open, #successOverlay.show {
-  touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Confetti particles */
-#successOverlay.show::after {
-  content: '🎊';
-  position: fixed;
-  top: 5%;
-  left: 50%;
-  font-size: 40px;
-  animation: confettiFall 2.5s ease-out 0.2s both;
-  pointer-events: none;
-  z-index: 10001;
-}
-@keyframes confettiFall {
-  0%   { transform: translateY(0) translateX(-50%) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(110vh) translateX(-50%) rotate(720deg); opacity: 0; }
-}
-
+/* ── Success Box ── */
 #successBox {
   background: #111;
   border-radius: 20px;
-  width: calc(100% - 32px);
-  max-width: 420px;
-  /* Let flexbox parent handle centering */
-  position: relative;
-  flex-shrink: 0;
-  max-height: 88vh;
-  max-height: 88dvh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
+  width: calc(100% - 40px);
+  max-width: 400px;
   text-align: center;
-  -webkit-animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-  animation: ticketDrop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
-  z-index: 10000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.07);
+  -webkit-animation: ticketDrop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  animation: ticketDrop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  overflow: hidden;
 }
 @keyframes ticketDrop {
-  0%   { transform: scale(0.5) translateY(-60px); opacity: 0; }
-  70%  { transform: scale(1.04) translateY(4px); opacity: 1; }
+  0%   { transform: scale(0.8) translateY(-30px); opacity: 0; }
   100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
@@ -488,39 +458,34 @@ body.stx-locked {
 .success-top {
   background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
   border-radius: 20px 20px 0 0;
-  padding: 28px 28px 22px;
+  padding: 18px 20px 14px;
   position: relative;
 }
 .success-top::after {
   content: 'SHOWTIX';
   position: absolute;
-  top: 12px;
-  right: 16px;
+  top: 10px;
+  right: 14px;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 3px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.35);
 }
 
 .success-icon {
-  font-size: 48px;
+  font-size: 32px;
   display: block;
-  margin-bottom: 8px;
-  animation: iconPop 0.5s 0.35s cubic-bezier(0.175,0.885,0.32,1.275) both;
-}
-@keyframes iconPop {
-  0%   { transform: scale(0) rotate(-20deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  margin-bottom: 6px;
 }
 .success-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   letter-spacing: 3px;
   color: #fff;
   margin: 0 0 2px;
 }
 .success-sub {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255,255,255,0.65);
   margin: 0;
 }
@@ -557,29 +522,29 @@ body.stx-locked {
 .success-body {
   background: #111;
   border-radius: 0 0 20px 20px;
-  padding: 20px 24px 24px;
+  padding: 14px 18px 18px;
 }
 
 .success-details {
   text-align: left;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .success-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 9px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 13px;
-  gap: 12px;
+  font-size: 12px;
+  gap: 10px;
 }
 .success-row:last-child { border-bottom: none; padding-bottom: 0; }
-.success-row .label { color: #555; font-weight: 400; white-space: nowrap; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 2px; }
+.success-row .label { color: #555; font-weight: 400; white-space: nowrap; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 2px; }
 .success-row .value { color: #e0e0e0; font-weight: 600; text-align: right; word-break: break-word; }
 .success-row .value.green {
   color: #22c55e;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 1px;
 }
 
@@ -604,16 +569,16 @@ body.stx-locked {
 .success-qr-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   background: #1a1a1a;
   border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 18px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
 }
 .success-qr {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   background:
     repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 3px, transparent 3px, transparent 7px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 3px, transparent 3px, transparent 7px);
@@ -646,17 +611,17 @@ body.stx-locked {
 
 .success-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 .btn-home {
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 10px;
   color: #888;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
@@ -664,13 +629,13 @@ body.stx-locked {
 .btn-home:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
 .btn-download {
   flex: 2;
-  padding: 12px;
+  padding: 10px;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   border: none;
   border-radius: 10px;
   color: #fff;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -941,23 +906,7 @@ body.stx-locked {
   .price-btn { padding: 5px 10px; font-size: 11px; }
 
   /* Success overlay */
-  #successBox { width: calc(100% - 24px); max-width: 400px; border-radius: 16px; max-height: 85vh; max-height: 85dvh; }
-  .success-top { padding: 20px 16px 16px; border-radius: 16px 16px 0 0; }
-  .success-body { padding: 14px 16px 16px; border-radius: 0 0 16px 16px; }
-  .success-title { font-size: 22px; letter-spacing: 2px; }
-  .success-icon { font-size: 36px; }
-  .success-row { font-size: 12px; padding: 7px 0; }
-  .success-row .label { font-size: 10px; }
-  .success-row .value { font-size: 12px; }
-  .success-row .value.green { font-size: 18px; }
-  .success-qr-row { padding: 10px 12px; gap: 10px; }
-  .success-qr { width: 44px; height: 44px; }
-  .success-id { font-size: 11px; letter-spacing: 1px; }
-  .success-id-label { font-size: 8px; }
-  .success-actions { flex-direction: column; gap: 8px; }
-  .btn-home, .btn-download { flex: unset; width: 100%; padding: 13px; font-size: 13px; }
-  .ticket-tear::before { left: -13px; }
-  .ticket-tear::after  { right: -13px; }
+  #successBox { width: calc(100% - 32px); max-width: 380px; }
 }
 
 @media (max-width: 360px) {
@@ -970,5 +919,5 @@ body.stx-locked {
   .time { padding: 6px 8px; font-size: 10px; }
   .pay-option { padding: 9px 10px; }
   .pay-icon { font-size: 16px; width: 24px; }
-  #successBox { width: calc(100% - 16px); max-width: 360px; max-height: 82vh; }
+  #successBox { width: calc(100% - 24px); }
 }
